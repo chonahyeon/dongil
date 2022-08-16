@@ -92,6 +92,10 @@ def build_model(train):
 
 # ---------------------------------#
 pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
+if 'pred_ratio' not in st.session_state:
+  st.session_state["pred_ratio"] = 0
+if 'pred_value' not in st.session_state:
+  st.session_state["pred_value"] = 0
 def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost) :
     # pred_val = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
     global pred_df
@@ -108,6 +112,8 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     }
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
+    st.session_state["pred_value"] = '99.554%'
+    st.session_state["pred_ratio"] = '184,341,444'
 
 # """
 # date_1 : 공고일
@@ -245,10 +251,7 @@ else:
 
 st.subheader('2. 예측하기')
 
-if 'pred_ratio' not in st.session_state:
-  st.session_state["pred_ratio"] = 0
-if 'pred_value' not in st.session_state:
-  st.session_state["pred_value"] = 0
+
 
 st.write(pred_df)
 pred_ratio = 0
