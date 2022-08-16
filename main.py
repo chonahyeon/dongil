@@ -112,8 +112,9 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     }
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
-    st.session_state["pred_value"] = '99.554%'
-    st.session_state["pred_ratio"] = '184,341,444'
+    
+    st.session_state["pred_ratio"] = '99.554%'
+    st.session_state["pred_value"] = '184,341,444원'
 
 # """
 # date_1 : 공고일
