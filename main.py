@@ -251,14 +251,17 @@ else:
         build_model(df)
 
 st.subheader('2. 예측하기')
-
+st.set_option('wideMode' , True)
 st.write(pred_df)
+st.set_option('wideMode' , False)
 pred_ratio = 0
 pred_value = 0
 result_ratio = st.write('예측_예가율 ')
+# 초록색을 사용하기위해 success 를 사용
 st.success(st.session_state["pred_ratio"])
 result_value = st.write('예측_계산가격 ')
-st.info(st.session_state["pred_value"])
+# 노란색을 사용하기위해 warning 을 사용
+st.warning(st.session_state["pred_value"])
 
 
 st.subheader('3. 과거 유사 공고')
