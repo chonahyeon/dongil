@@ -101,18 +101,18 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     global pred_df
 
     new_data = {
-        '공고일': ['2021-08-09'],
-        '입찰일': ['2021-08-14'],
-        '낙찰하한율': ['88.8878'],
-        '발주청': ['경기도'],
-        '시도': ['성남'],
-        '연면적': ['202132'],
-        '대지면적': ['214124124'],
-        '기초금액': ['222244443333'],
+        '공고일': [date_1],
+        '입찰일': [date_2],
+        '낙찰하한율': [ratio_value],
+        '발주청': [client_value],
+        '시도': [sido_value],
+        '연면적': [land_area],
+        '대지면적': [build_area],
+        '기초금액': [cost],
     }
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
-    
+
     st.session_state["pred_ratio"] = '99.554%'
     st.session_state["pred_value"] = '184,341,444원'
 
@@ -252,10 +252,11 @@ else:
 
 st.subheader('2. 예측하기')
 
-
-
 st.write(pred_df)
 pred_ratio = 0
 pred_value = 0
 result_ratio = st.write('예측_예가율 : ',st.session_state["pred_ratio"])
 result_value = st.write('예측_계산가격 : ',st.session_state["pred_value"])
+
+
+st.subheader('3. 과거 유사 공고')
