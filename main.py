@@ -208,6 +208,7 @@ with st.sidebar.subheader('Predict Button'):
     if st.button('Show prediction') :
         predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost)
 
+
 # ---------------------------------#
 # Main panel
 
@@ -233,7 +234,7 @@ else:
 
         # Boston housing dataset
 
-        
+
         df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
 
 
@@ -243,5 +244,8 @@ else:
         build_model(df)
 
 st.subheader('2. 예측하기')
-
 st.write(pred_df)
+pred_ratio = 0
+pred_value = 0
+result_ratio = st.success('예측_예가율 : ', pred_ratio)
+result_value = st.success('예측_계산가격 : ', pred_ratio)
