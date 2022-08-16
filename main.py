@@ -103,9 +103,9 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     new_data = {
         '공고일': [date_1],
         '입찰일': [date_2],
-        '낙찰하한율': [ratio_value],
-        '발주청': [client_value],
-        '시도': [sido_value],
+        '낙찰하한율': [ratio_list[ratio_value]],
+        '발주청': [client_list[client_value]],
+        '시도': [sido_list[sido_value]],
         '연면적': [land_area],
         '대지면적': [build_area],
         '기초금액': [cost],
