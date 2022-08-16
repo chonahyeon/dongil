@@ -251,9 +251,7 @@ else:
         build_model(df)
 
 st.subheader('2. 예측하기')
-st.set_option('wideMode' , True)
-st.write(pred_df)
-st.set_option('wideMode' , False)
+st.dataframe(pred_df)
 pred_ratio = 0
 pred_value = 0
 result_ratio = st.write('예측_예가율 ')
