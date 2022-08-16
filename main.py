@@ -244,8 +244,14 @@ else:
         build_model(df)
 
 st.subheader('2. 예측하기')
+
+if 'pred_ratio' not in st.session_state:
+  st.session_state["pred_ratio"] = 0
+if 'pred_value' not in st.session_state:
+  st.session_state["pred_value"] = 0
+
 st.write(pred_df)
 pred_ratio = 0
 pred_value = 0
-result_ratio = st.text('예측_예가율 : ')
-result_value = st.text('예측_계산가격 : ')
+result_ratio = st.text('예측_예가율 : ',st.session_state["pred_ratio"])
+result_value = st.text('예측_계산가격 : ',st.session_state["pred_value"])
