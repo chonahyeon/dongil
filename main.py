@@ -233,8 +233,8 @@ else:
 
         # Boston housing dataset
 
-        url = 'https://github.com/Jeon-peng/dongil/blob/main/%EC%9E%85%EC%B0%B0%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%88%98%EC%A0%95%EC%9A%A9_0804.csv'
-        df = pd.read_csv(url, index_col=0)
+        
+        df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
 
 
         st.markdown('엑셀 초기자료입니다')
