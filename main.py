@@ -247,5 +247,5 @@ st.subheader('2. 예측하기')
 st.write(pred_df)
 pred_ratio = 0
 pred_value = 0
-result_ratio = st.success('예측_예가율 : ', pred_ratio)
-result_value = st.success('예측_계산가격 : ', pred_ratio)
+result_ratio = st.text('예측_예가율 : ', pred_ratio)
+result_value = st.text('예측_계산가격 : ', pred_ratio)
