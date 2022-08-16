@@ -232,7 +232,10 @@ else:
         # st.write(df.head(5))
 
         # Boston housing dataset
-        df = pd.read_csv('/입찰데이터_수정용_0804.csv')
+
+        url = ('https://github.com/Jeon-peng/dongil/blob/main')
+        df = pd.read_csv(f'{url}/입찰데이터_수정용_0804.csv')
+
 
         st.markdown('엑셀 초기자료입니다')
         st.write(df.head(5))
