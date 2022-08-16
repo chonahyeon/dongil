@@ -91,7 +91,7 @@ def build_model(train):
 
 
 # ---------------------------------#
-pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액','예측_예가율','예측_계산가격'])
+pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
 def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost) :
     # pred_val = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
     global pred_df
@@ -105,8 +105,6 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
         '연면적': ['202132'],
         '대지면적': ['214124124'],
         '기초금액': ['222244443333'],
-        '예측_예가율': ['99.9987'],
-        '예측_계산가격': ['100억']
     }
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
@@ -125,7 +123,7 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
 
 # ---------------------------------#
 st.write("""
-# The Machine Learning App
+# 수주확대를 위한 머신러닝을 통한 입찰분석
 동일건축 주택법 입력해야 할 값 : 공고일시, 입찰일시, 연면적, 대지면적, 기초금액, 낙찰하한율, 발주청, 시도
 """)
 
@@ -234,7 +232,7 @@ else:
         # st.write(df.head(5))
 
         # Boston housing dataset
-        df = pd.read_csv('/Users/jeonseonghyeon/Desktop/test/입찰데이터_수정용_0804.csv')
+        df = pd.read_csv('/입찰데이터_수정용_0804.csv')
 
         st.markdown('엑셀 초기자료입니다')
         st.write(df.head(5))
