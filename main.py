@@ -96,6 +96,7 @@ def build_model(df):
         return df_train
 
     def orn_model_fit(df):
+
         global etr
         X = df.drop(columns='예가율').copy()
         y = df['예가율'].copy()
@@ -103,12 +104,98 @@ def build_model(df):
         model_filename = datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") + "_etr_model.joblib"
         joblib.dump(etr, model_filename)
 
-    
+    def pred_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost,household):
+        def transform_scaler(df):
+            global scaler
+            print('Start transform scaler...')
+            # 숫자에 콤마(,)가 들어가 있어 Object 형식으로 읽음 -> 콤마(,)를 제거 후 실수형(float)으로 변환하는 작업
+            df['연면적'] = df['연면적'].str.replace(',', '').astype(float)
+            df['세대수'] = df['세대수'].str.replace(',', '').astype(float)
+            df['대지면적'] = df['대지면적'].str.replace(',', '').astype(float)
+            df['기초금액'] = df['기초금액'].str.replace(',', '').astype(float)
+
+            df['발주청'] = df['발주청'].str.replace(' ', '')
+            df['시도'] = df['시도'].str.replace(' ', '')
+            df['입찰년'] = df['입찰년'].astype(int)
+            df['입찰월'] = df['입찰월'].astype(int)
+            df['입찰일'] = df['입찰일'].astype(int)
+            df['입찰분기'] = df['입찰분기'].astype(int)
+
+            df['공고년'] = df['공고년'].astype(int)
+            df['공고월'] = df['공고월'].astype(int)
+            df['공고일'] = df['공고일'].astype(int)
+            df['공고분기'] = df['공고분기'].astype(int)
+
+            df["log_연면적"] = np.log1p(df["연면적"])
+            df["log_대지면적"] = np.log1p(df["대지면적"])
+            df["log_세대수"] = np.log1p(df["세대수"])
+            df["log_기초금액"] = np.log1p(df["기초금액"])
+            df = df.reset_index(drop=True)
+
+            data_scaled = scaler.transform(df[['log_연면적', 'log_대지면적', 'log_세대수', 'log_기초금액']])
+            scaled_df = pd.DataFrame(data_scaled,
+                                     columns=['std_log_연면적', 'std_log_대지면적', 'std_log_세대수', 'std_log_기초금액'])
+
+            df['std_연면적'] = scaled_df['std_log_연면적']
+            df['std_대지면적'] = scaled_df['std_log_대지면적']
+            df['std_세대수'] = scaled_df['std_log_세대수']
+            df['std_기초금액'] = scaled_df['std_log_기초금액']
+            df = df.drop(columns=['연면적', '대지면적', '세대수', '기초금액', 'log_연면적', 'log_대지면적', 'log_세대수', 'log_기초금액'])
+            print('Success transform Scaler!!!!')
+            print(df.shape)
+            print('-' * 80)
+            return df
+
+        def transform_enc(df):
+            print('Start transform enc !')
+            global enc
+            cols = ['std_연면적', 'std_대지면적', 'std_세대수', 'std_기초금액', '낙찰하한율', '발주청', '시도', '공고년', '공고월', '공고일', '공고요일',
+                    '입찰년', '입찰월', '입찰일', '입찰요일', '입찰분기', '공고분기']
+            col_arr = ['발주청', '시도', '공고년', '공고월', '공고일', '공고요일', '입찰년', '입찰월', '입찰일', '입찰요일']
+            df = df[cols]
+            enc_df = pd.DataFrame(data=enc.transform(df[col_arr]).toarray(), columns=enc.get_feature_names(col_arr),
+                                  dtype=bool)
+            df_train = pd.concat([df.drop(columns=col_arr), enc_df], axis=1)
+
+            print('Success transform enc!!!!')
+            print(df.shape)
+            print('-' * 80)
+
+            return df_train
+
+        def pred_model(df):
+            print('Start model pred...')
+            global etr
+            pred_val = etr.predict(df)
+            global base_cost
+            global base_ratio
+            pred_cost = base_cost * base_ratio * pred_val
+            return pred_val, pred_cost
+
+        input_df = pd.DataFrame(np.array([[client_value, sido_value, int(date_1.year), int(date_1.quater), int(date_1.month), int(date_1.day),
+                                           date_1.weekday(), int(date_2.year), int(date_2.quater), int(date_2.month), int(date_2.day),
+                                           date_2.weekday(), float(household), float(land_area), float(build_area),
+                                           float(cost), float(ratio_value)]]),
+                                columns=['발주청', '시도', '공고년', '공고분기', '공고월', '공고일', '공고요일', '입찰년', '입찰분기', '입찰월', '입찰일',
+                                         '입찰요일', '세대수', '대지면적', '연면적', '기초금액', '낙찰하한율'])
+        base_cost = cost
+        base_ratio = ratio_value
+        
+        input_df = transform_scaler(input_df)
+        input_df = transform_enc(input_df)
+
+        pred_val, pred_cost = pred_model(input_df)
+
+        return pred_val, pred_cost
+
+
+
     df = orn_preprocess(df)
     df = orn_log_std_transform(df)
     df = first_ont_hot_encoded(df)
     orn_model_fit(df)
-    pred_val, pred_cost = pred_value()
+
+    pred_val, pred_cost = pred_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost,household)
     return pred_val, pred_cost
 
 
@@ -164,7 +251,7 @@ st.write("""
 
 with st.sidebar.header('0. Select CSV or Model'):
     pages = ["CSV", "Model"]
-    tags = ["Awesome", "Social"]
+
 
     page = st.sidebar.radio("Navigate", options=pages)
     st.title(page)
@@ -244,6 +331,9 @@ with st.sidebar.header('0. Select CSV or Model'):
 
         with st.sidebar.subheader('9. 기초금액을 입력해주세요'):
             cost = st.text_input("9. 기초금액을 입력해주세요")
+
+        with st.sidebar.subheader('10. 세대수를 입력해주세요'):
+            household = st.text_input("10. 세대수를 입력해주세요")
 
         with st.sidebar.subheader('Predict Button'):
             if st.button('Show prediction'):
