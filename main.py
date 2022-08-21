@@ -343,8 +343,16 @@ with st.sidebar.header('0. Select CSV or Model'):
                     st.info('Awaiting for CSV file to be uploaded.')
                     df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
                 predict_value(date_1, date_2, ratio_value, client_value, sido_value, land_area, build_area, cost)
-                pred_ratio, pred_value = build_model(df)
 
+                #### 이게 실행되어야해
+                # pred_ratio, pred_value = build_model(df)
+                ### 이거이거이거이거이거
+
+
+
+
+
+                
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
                 # print('예측한 계산된 가격 : {0:,}'.format(int(pred_cost)))
                 # print('End Sequence!!!!!!!!!!!!')
