@@ -190,14 +190,15 @@ def build_model(df):
         }
         input_df = pd.DataFrame(new_data2)
 
-        base_cost = cost
-        base_ratio = ratio_value
+        base_cost = [cost]
+        base_ratio = [ratio_list[ratio_value]]
 
         input_df = transform_scaler(input_df)
         input_df = transform_enc(input_df)
 
         pred_val, pred_cost = pred_model(input_df)
-
+        st.session_state["pred_ratio"] = pred_val
+        st.session_state["pred_value"] = pred_cost
         return pred_val, pred_cost
 
 
@@ -237,8 +238,7 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
 
-    st.session_state["pred_ratio"] = '99.554%'
-    st.session_state["pred_value"] = '184,341,444원'
+
 
 
 
