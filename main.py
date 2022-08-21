@@ -387,7 +387,7 @@ with st.sidebar.header('0. Select CSV or Model'):
 st.subheader('1. 데이터셋')
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    # df = pd.read_csv(uploaded_file)
     st.markdown('**1.1. 업로드한 데이터 셋 입니다**')
     st.write(df)
     # build_model(df)
@@ -396,9 +396,9 @@ if uploaded_file is not None:
 else:
     st.info('Awaiting for CSV file to be uploaded.')
     if st.button('Press to use Example Dataset'):
-        df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
+
         st.markdown('엑셀 초기자료입니다')
-        st.write(df.head(5))
+        st.write(pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0).head(5))
 
         # build_model(df)
 
