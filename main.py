@@ -172,10 +172,10 @@ def build_model(df):
             pred_cost = base_cost * base_ratio * pred_val
             return pred_val, pred_cost
 
-        input_df = pd.DataFrame(np.array([[client_list[client_value], sido_list[sido_value], date_1.year, date_1.quater, int(date_1.month), int(date_1.day),
-                                           date_1.weekday(), int(date_2.year), int(date_2.quater), int(date_2.month), int(date_2.day),
-                                           date_2.weekday(), float(household), float(land_area), float(build_area),
-                                           float(cost), float(ratio_list[ratio_value])]]),
+        input_df = pd.DataFrame(np.array([[client_list[client_value], sido_list[sido_value], date_1.year, date_1.quater, date_1.month, date_1.day,
+                                           date_1.weekday(), date_2.year, date_2.quater, date_2.month, date_2.day,
+                                           date_2.weekday(), household, land_area, build_area,
+                                           cost, ratio_list[ratio_value] ]]),
                                 columns=['발주청', '시도', '공고년', '공고분기', '공고월', '공고일', '공고요일', '입찰년', '입찰분기', '입찰월', '입찰일',
                                          '입찰요일', '세대수', '대지면적', '연면적', '기초금액', '낙찰하한율'])
         base_cost = cost
@@ -213,8 +213,8 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     global pred_df
 
     new_data = {
-        '공고일': [date_1.year],
-        '입찰일': [date_2.month],
+        '공고일': [date_1],
+        '입찰일': [date_2],
         '낙찰하한율': [ratio_list[ratio_value]],
         '발주청': [client_list[client_value]],
         '시도': [sido_list[sido_value]],
@@ -227,6 +227,13 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
 
     st.session_state["pred_ratio"] = '99.554%'
     st.session_state["pred_value"] = '184,341,444원'
+    input_df = pd.DataFrame(np.array(
+        [[client_list[client_value], sido_list[sido_value], date_1.year, date_1.quater, date_1.month, date_1.day,
+          date_1.weekday(), date_2.year, date_2.quater, date_2.month, date_2.day,
+          date_2.weekday(), household, land_area, build_area,
+          cost, ratio_list[ratio_value]]]),
+                            columns=['발주청', '시도', '공고년', '공고분기', '공고월', '공고일', '공고요일', '입찰년', '입찰분기', '입찰월', '입찰일',
+                                     '입찰요일', '세대수', '대지면적', '연면적', '기초금액', '낙찰하한율'])
 
 # """
 # date_1 : 공고일
@@ -352,7 +359,7 @@ with st.sidebar.header('0. Select CSV or Model'):
 
 
 
-                
+
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
                 # print('예측한 계산된 가격 : {0:,}'.format(int(pred_cost)))
                 # print('End Sequence!!!!!!!!!!!!')
