@@ -166,7 +166,7 @@ def build_model(df):
             global cost
             global ratio_value
             global ratio_list
-            pred_cost = cost * float(ratio_list[ratio_value]) * pred_val
+            pred_cost = int(cost) * float(ratio_list[ratio_value]) * float(pred_val)
             return pred_val, pred_cost
 
         days = ['월','화','수','목','금','토','일']
