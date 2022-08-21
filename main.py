@@ -150,8 +150,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             uploaded_file = st.sidebar.file_uploader("학습시킬 데이터(CSV)를 업로드해주세요", type=["csv"])
     else :
         with st.sidebar.header('예측 모델을 선택해주세요'):
-            model_list = glob.glob("model/**/", recursive=True)
-
+            model_list = list(filter(os.path.isdir, os.listdir(./model)))
             uploaded_file = './입찰데이터_수정용_0804.csv'
 
             model_value = st.selectbox("모델 선택 ", model_list, format_func=lambda x: model_list[x])
