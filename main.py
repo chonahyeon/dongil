@@ -151,7 +151,7 @@ with st.sidebar.header('0. Select CSV or Model'):
     else :
         with st.sidebar.header('예측 모델을 선택해주세요'):
             uploaded_file = './입찰데이터_수정용_0804.csv'
-            model_list = glob.glob('./model/**/',  recursive = True)
+            model_list = glob.glob('./model/*',  recursive = True)
             model_value = st.selectbox("모델 선택 ", model_list)#, format_func=lambda x: model_list[x])
 
 
