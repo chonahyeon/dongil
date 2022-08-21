@@ -12,6 +12,7 @@ import datetime
 import os
 import glob
 import math
+
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
@@ -257,7 +258,6 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
 # ---------------------------------#
 st.write("""
 # 수주확대를 위한 머신러닝을 통한 입찰분석
-동일건축 주택법 입력해야 할 값 : 공고일시, 입찰일시, 연면적, 대지면적, 기초금액, 낙찰하한율, 발주청, 시도
 """)
 
 # ---------------------------------#
@@ -273,11 +273,12 @@ with st.sidebar.header('0. Select CSV or Model'):
         with st.sidebar.header('1. 학습시킬 데이터를 업로드해주세요'):
             uploaded_file = st.sidebar.file_uploader("학습시킬 데이터(CSV)를 업로드해주세요", type=["csv"])
     elif page == "BASE":
-        uploaded_file = './입찰데이터_수정용_0804.csv'
+        uploaded_file = './최종모델기초데이터.csv'
+        save_uploaded_file(uploaded_file)
 
     else :
         with st.sidebar.header('예측 모델을 선택해주세요'):
-            uploaded_file = './입찰데이터_수정용_0804.csv'
+            uploaded_file = './최종모델기초데이터.csv'
             model_list = glob.glob('./model/*',  recursive = True)
             model_value = st.selectbox("모델 선택 ", model_list)#, format_func=lambda x: model_list[x])
     # Sidebar - Specify parameter settings
@@ -405,6 +406,6 @@ result_value = st.write('예측_계산가격 ')
 st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 
 
-st.subheader('3. 과거 유사 공고')
+st.subheader('모델 다운받기')
 
 
