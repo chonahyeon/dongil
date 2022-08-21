@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import *
 from sklearn.preprocessing import OneHotEncoder
 
-
+import datetime
 import os
 import datetime
 import glob
@@ -105,8 +105,8 @@ def build_model(df):
         model_filename = datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") + "_etr_model.joblib"
         joblib.dump(etr, model_filename)
 
-    os.mkdir('./model/' + (datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분")))
-    dir = './model/' + (datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분"))
+    os.mkdir('./model/'+(datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분")))
+    dir = './model/'+(datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분"))
     os.chdir(dir)
     df = orn_preprocess(df)
     df = orn_log_std_transform(df)
