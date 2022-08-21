@@ -136,6 +136,17 @@ st.write("""
 
 # ---------------------------------#
 # Sidebar - Collects user input features into dataframe
+
+with st.sidebar.header('0. Select CSV or Model'):
+    pages = ["CSV", "Model"]
+    tags = ["Awesome", "Social"]
+
+    page = st.sidebar.radio("Navigate", options=pages)
+    st.title(page)
+    if page == "CSV":
+        selection = st.multiselect("Select tag", tags)
+        st.write(selection)
+
 with st.sidebar.header('1. 학습시킬 데이터를 업로드해주세요'):
     uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
 
