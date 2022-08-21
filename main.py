@@ -251,6 +251,12 @@ with st.sidebar.header('0. Select CSV or Model'):
 
         with st.sidebar.subheader('Predict Button'):
             if st.button('Show prediction'):
+                if uploaded_file is not None:
+                    df = pd.read_csv(uploaded_file)
+                else:
+                    st.info('Awaiting for CSV file to be uploaded.')
+                    df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
+                    
                 pred_ratio, pred_value = build_model(df)
 
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
