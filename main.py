@@ -369,6 +369,14 @@ with st.sidebar.header('0. Select CSV or Model'):
                 df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
             predict_value(date_1, date_2, ratio_value, client_value, sido_value, land_area, build_area, cost)
 
+
+            st.subheader('모델 다운받기')
+            btn = st.download_button(
+                label="Download ZIP",
+                data=fp,
+                file_name=my_zip.filename,
+                mime="application/zip"
+            )
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
@@ -409,10 +417,4 @@ result_value = st.write('예측_계산가격 ')
 st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 
 
-st.subheader('모델 다운받기')
-btn = st.download_button(
-    label="Download ZIP",
-    data=fp,
-    file_name=my_zip.filename,
-    mime="application/zip"
-)
+
