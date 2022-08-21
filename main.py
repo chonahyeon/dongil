@@ -145,10 +145,12 @@ with st.sidebar.header('0. Select CSV or Model'):
     st.title(page)
     if page == "CSV":
         with st.sidebar.header('1. 학습시킬 데이터를 업로드해주세요'):
-            uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+            uploaded_file = st.sidebar.file_uploader("학습시킬 데이터(CSV)를 업로드해주세요", type=["csv"])
     else :
-        with st.sidebar.header('1. 학습시킬 모델을 업로드해주세요'):
-            uploaded_file = st.sidebar.file_uploader("Upload your input Model file", type=["joblib"])
+        with st.sidebar.header('1 학습시킬 모델을 업로드해주세요'):
+
+
+
 # Sidebar - Specify parameter settings
 with st.sidebar.subheader('예측자료 입력'):
     date_1 = st.date_input("2. 공고날짜를 입력해주세요", value=datetime.date(2022, 8, 15),
