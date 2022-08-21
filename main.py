@@ -226,32 +226,23 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
     st.markdown('**1.1. 업로드한 데이터 셋 입니다**')
     st.write(df)
-    build_model(df)
+    # build_model(df)
 else:
     st.info('Awaiting for CSV file to be uploaded.')
     if st.button('Press to use Example Dataset'):
-        # Diabetes dataset
-        # diabetes = load_diabetes()
-        # X = pd.DataFrame(diabetes.data, columns=diabetes.feature_names)
-        # Y = pd.Series(diabetes.target, name='response')
-        # df = pd.concat( [X,Y], axis=1 )
-
-        # st.markdown('The Diabetes dataset is used as the example.')
-        # st.write(df.head(5))
-
-        # Boston housing dataset
-
-
         df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
-
-
         st.markdown('엑셀 초기자료입니다')
         st.write(df.head(5))
 
-        build_model(df)
+        # build_model(df)
 
 st.subheader('2. 예측하기')
 st.dataframe(pred_df)
+
+
+
+
+
 pred_ratio = 0
 pred_value = 0
 result_ratio = st.write('예측_예가율 ')
@@ -265,4 +256,3 @@ st.warning(st.session_state["pred_value"])
 st.subheader('3. 과거 유사 공고')
 
 
-# ㅌ[ㅅ,ㅌ, ㅇ;ㅂㄴ;디
