@@ -172,15 +172,15 @@ def build_model(df):
             pred_cost = base_cost * base_ratio * pred_val
             return pred_val, pred_cost
 
-        input_df = pd.DataFrame(np.array([[client_value, sido_value, int(date_1.year), int(date_1.quater), int(date_1.month), int(date_1.day),
+        input_df = pd.DataFrame(np.array([[client_list[client_value], sido_list[sido_value], date_1.year, date_1.quater, int(date_1.month), int(date_1.day),
                                            date_1.weekday(), int(date_2.year), int(date_2.quater), int(date_2.month), int(date_2.day),
                                            date_2.weekday(), float(household), float(land_area), float(build_area),
-                                           float(cost), float(ratio_value)]]),
+                                           float(cost), float(ratio_list[ratio_value])]]),
                                 columns=['발주청', '시도', '공고년', '공고분기', '공고월', '공고일', '공고요일', '입찰년', '입찰분기', '입찰월', '입찰일',
                                          '입찰요일', '세대수', '대지면적', '연면적', '기초금액', '낙찰하한율'])
         base_cost = cost
         base_ratio = ratio_value
-        
+
         input_df = transform_scaler(input_df)
         input_df = transform_enc(input_df)
 
