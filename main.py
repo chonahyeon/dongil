@@ -263,3 +263,6 @@ st.warning(st.session_state["pred_value"])
 
 
 st.subheader('3. 과거 유사 공고')
+
+
+# ㅌ[ㅅ,ㅌ, ㅇ;ㅂㄴ;디
