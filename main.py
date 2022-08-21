@@ -25,7 +25,7 @@ enc = OneHotEncoder(handle_unknown='error')
 # ---------------------------------#
 # Model building
 def build_model(df):
-    my_zip = zipfile.ZipFile('./'+datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") +'.zip', 'w')
+
     def orn_preprocess(train):
         train = train.drop(columns='예정가격')
         train = train.dropna(axis=0)
@@ -80,7 +80,7 @@ def build_model(df):
 
         scaler_filename = datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") + "_scaler.save"
         joblib.dump(scaler, scaler_filename)
-        my_zip.write('scaler_filename')
+
         return train
 
     def first_ont_hot_encoded(df):
@@ -95,7 +95,7 @@ def build_model(df):
         df_train = pd.concat([df.drop(columns=col_arr), enc_df], axis=1)
         one_hot_filename = datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") + "_onehot.joblib"
         joblib.dump(enc, one_hot_filename)
-        my_zip.write('one_hot_filename')
+
         return df_train
 
     def orn_model_fit(df):
@@ -106,7 +106,7 @@ def build_model(df):
         etr.fit(X.drop(columns=['공고번호', '1순위예가율']), y)
         model_filename = datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") + "_etr_model.joblib"
         joblib.dump(etr, model_filename)
-        my_zip.write('model_filename')
+
     def pred_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost,household):
         def transform_scaler(df):
             global scaler
@@ -212,7 +212,7 @@ def build_model(df):
 
     pred_val, pred_cost = pred_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost,household)
 
-    my_zip.close()
+
     return pred_val, pred_cost
 
 
@@ -374,13 +374,6 @@ with st.sidebar.header('0. Select CSV or Model'):
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
-            st.subheader('모델 다운받기')
-            btn = st.download_button(
-                label="Download ZIP",
-                data=fp,
-                file_name=my_zip.filename,
-                mime="application/zip"
-            )
 
 
 
