@@ -227,14 +227,27 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
 
     st.session_state["pred_ratio"] = '99.554%'
     st.session_state["pred_value"] = '184,341,444원'
-    input_df = pd.DataFrame(np.array(
-        [[client_list[client_value], sido_list[sido_value], date_1.year, date_1.quater, date_1.month, date_1.day,
-          date_1.weekday(), date_2.year, date_2.quater, date_2.month, date_2.day,
-          date_2.weekday(), household, land_area, build_area,
-          cost, ratio_list[ratio_value]]]),
-                            columns=['발주청', '시도', '공고년', '공고분기', '공고월', '공고일', '공고요일', '입찰년', '입찰분기', '입찰월', '입찰일',
-                                     '입찰요일', '세대수', '대지면적', '연면적', '기초금액', '낙찰하한율'])
 
+    new_data2 = {
+        '발주청' : [client_list[client_value]],
+        '시도':[sido_list[sido_value]],
+        '공고년':[date_1.year],
+        '공고분기':[date_1.quater],
+        '공고월':[date_1.month],
+        '공고일':[date_1.day],
+        '공고요일':[date_1.weekday()],
+        '입찰년':[date_2.year],
+        '입찰분기':[date_2.quater],
+        '입찰월':[date_2.month],
+        '입찰일':[date_2.day],
+        '입찰요일':[date_2.weekday()],
+        '세대수':[household],
+        '대지면적':[land_area],
+        '연면적':[build_area],
+        '기초금액':[cost],
+        '낙찰하한율':[ratio_list[ratio_value]]
+    }
+    new_df = pd.DataFrame(new_data2)
 # """
 # date_1 : 공고일
 # date_2 : 입찰일
