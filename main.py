@@ -11,6 +11,7 @@ from sklearn.ensemble import ExtraTreesRegressor
 import datetime
 import os
 import glob
+import math
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
@@ -237,12 +238,12 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
         '발주청' : [client_list[client_value]],
         '시도':[sido_list[sido_value]],
         '공고년':[date_1.year],
-        '공고분기':[pd.to_datetime(date_1).dt.quarter],
+        '공고분기':[math.ceil(date_1.month/3.)],
         '공고월':[date_1.month],
         '공고일':[date_1.day],
         '공고요일':[date_1.weekday()],
         '입찰년':[date_2.year],
-        '입찰분기':[pd.to_datetime(date_2)],
+        '입찰분기':[math.ceil(date_2.month/3.)],
         '입찰월':[date_2.month],
         '입찰일':[date_2.day],
         '입찰요일':[date_2.weekday()],
