@@ -228,11 +228,16 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     st.session_state["pred_ratio"] = '99.554%'
     st.session_state["pred_value"] = '184,341,444원'
 
+    # train['BidOpenDateTime'] =
+    # train['입찰분기'] = train['BidOpenDateTime']
+    # train['NoticeDate'] = pd.to_datetime(train['NoticeDate'])
+    # train['공고분기'] = train['NoticeDate'].dt.quarter
+
     new_data2 = {
         '발주청' : [client_list[client_value]],
         '시도':[sido_list[sido_value]],
         '공고년':[date_1.year],
-        '공고분기':[pd.to_datetime(date_1)],
+        '공고분기':[pd.to_datetime(date_1).dt.quarter],
         '공고월':[date_1.month],
         '공고일':[date_1.day],
         '공고요일':[date_1.weekday()],
