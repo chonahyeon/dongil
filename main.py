@@ -1,18 +1,16 @@
 import streamlit as st
-import pandas as pd
+
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import GradientBoostingRegressor,RandomForestRegressor, GradientBoostingRegressor, ExtraTreesRegressor
-from sklearn.metrics import mean_squared_error, r2_score
-
-from sklearn.preprocessing import *
+from sklearn.preprocessing import StandardScaler
+import warnings
+warnings.filterwarnings('ignore')
+import joblib
+import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
-
+from sklearn.ensemble import ExtraTreesRegressor
 import datetime
 import os
-import datetime
 import glob
-import joblib
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
