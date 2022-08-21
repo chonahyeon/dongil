@@ -387,9 +387,9 @@ with st.sidebar.header('0. Select CSV or Model'):
 st.subheader('1. 데이터셋')
 
 if uploaded_file is not None:
-    # df = pd.read_csv(uploaded_file)
+    # df = df
     st.markdown('**1.1. 업로드한 데이터 셋 입니다**')
-    st.write(df)
+    # st.write(df)
     # build_model(df)
 
 
