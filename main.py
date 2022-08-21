@@ -384,25 +384,8 @@ with st.sidebar.header('0. Select CSV or Model'):
 # Main panel
 
 # Displays the dataset
-st.subheader('1. 데이터셋')
 
-if uploaded_file is not None:
-    # df = df
-    st.markdown('**1.1. 업로드한 데이터 셋 입니다**')
-    # st.write(df)
-    # build_model(df)
-
-
-else:
-    st.info('Awaiting for CSV file to be uploaded.')
-    if st.button('Press to use Example Dataset'):
-
-        st.markdown('엑셀 초기자료입니다')
-        st.write(pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0).head(5))
-
-        # build_model(df)
-
-st.subheader('2. 예측하기')
+st.subheader('1. 예측하기')
 st.dataframe(pred_df)
 
 
@@ -413,10 +396,10 @@ pred_ratio = 0
 pred_value = 0
 result_ratio = st.write('예측_예가율 ')
 # 초록색을 사용하기위해 success 를 사용
-st.success(st.session_state["pred_ratio"])
+st.success('{:0,.4f}%'.format(float(st.session_state["pred_ratio"])*100))
 result_value = st.write('예측_계산가격 ')
 # 노란색을 사용하기위해 warning 을 사용
-st.warning(st.session_state["pred_value"])
+st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 
 
 st.subheader('3. 과거 유사 공고')
