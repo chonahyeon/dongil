@@ -103,7 +103,7 @@ def build_model(df):
         model_filename = datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") + "_etr_model.joblib"
         joblib.dump(etr, model_filename)
 
-    os.mkdirs('./model/'+(datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분")))
+    os.makedirs('./model/'+(datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분")))
     dir = './model/'+(datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분"))
     os.chdir(dir)
     df = orn_preprocess(df)
