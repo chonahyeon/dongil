@@ -105,8 +105,8 @@ def build_model(df):
         model_filename = datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분") + "_etr_model.joblib"
         joblib.dump(etr, model_filename)
 
-    os.mkdir('/model/' + (datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분")))
-    dir = '/model/' + (datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분"))
+    os.mkdir('./model/' + (datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분")))
+    dir = './model/' + (datetime.datetime.today().strftime("%Y년_%m월_%d일_%H시_%M분"))
     os.chdir(dir)
     df = orn_preprocess(df)
     df = orn_log_std_transform(df)
@@ -256,7 +256,7 @@ with st.sidebar.header('0. Select CSV or Model'):
                 else:
                     st.info('Awaiting for CSV file to be uploaded.')
                     df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
-                    
+
                 pred_ratio, pred_value = build_model(df)
 
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
