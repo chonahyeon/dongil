@@ -163,9 +163,10 @@ def build_model(df):
             print('Start model pred...')
             global etr
             pred_val = etr.predict(df)
-            global base_cost
-            global base_ratio
-            pred_cost = base_cost * base_ratio * pred_val
+            global cost
+            global ratio_value
+            global ratio_list
+            pred_cost = cost * ratio_list[ratio_value] * pred_val
             return pred_val, pred_cost
 
         days = ['월','화','수','목','금','토','일']
@@ -190,8 +191,7 @@ def build_model(df):
         }
         input_df = pd.DataFrame(new_data2)
 
-        base_cost = [cost]
-        base_ratio = [ratio_list[ratio_value]]
+
 
         input_df = transform_scaler(input_df)
         input_df = transform_enc(input_df)
