@@ -142,13 +142,11 @@ def build_model(df):
             df['std_세대수'] = scaled_df['std_log_세대수']
             df['std_기초금액'] = scaled_df['std_log_기초금액']
             df = df.drop(columns=['연면적', '대지면적', '세대수', '기초금액', 'log_연면적', 'log_대지면적', 'log_세대수', 'log_기초금액'])
-            print('Success transform Scaler!!!!')
-            print(df.shape)
-            print('-' * 80)
+
             return df
 
         def transform_enc(df):
-            print('Start transform enc !')
+
             global enc
             cols = ['std_연면적', 'std_대지면적', 'std_세대수', 'std_기초금액', '낙찰하한율', '발주청', '시도', '공고년', '공고월', '공고일', '공고요일',
                     '입찰년', '입찰월', '입찰일', '입찰요일', '입찰분기', '공고분기']
@@ -158,9 +156,6 @@ def build_model(df):
                                   dtype=bool)
             df_train = pd.concat([df.drop(columns=col_arr), enc_df], axis=1)
 
-            print('Success transform enc!!!!')
-            print(df.shape)
-            print('-' * 80)
 
             return df_train
 
@@ -173,7 +168,7 @@ def build_model(df):
             pred_cost = base_cost * base_ratio * pred_val
             return pred_val, pred_cost
 
-
+        days = ['월','화','수','목','금','토','일']
         new_data2 = {
             '발주청': [client_list[client_value]],
             '시도': [sido_list[sido_value]],
@@ -181,12 +176,12 @@ def build_model(df):
             '공고분기': [math.ceil(date_1.month / 3.)],
             '공고월': [date_1.month],
             '공고일': [date_1.day],
-            '공고요일': [date_1.weekday()],
+            '공고요일': [days[date_1.weekday()]],
             '입찰년': [date_2.year],
             '입찰분기': [math.ceil(date_2.month / 3.)],
             '입찰월': [date_2.month],
             '입찰일': [date_2.day],
-            '입찰요일': [date_2.weekday()],
+            '입찰요일': [days[date_2.weekday()]],
             '세대수': [household],
             '대지면적': [land_area],
             '연면적': [build_area],
