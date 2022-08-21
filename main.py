@@ -364,7 +364,7 @@ with st.sidebar.header('0. Select CSV or Model'):
                 predict_value(date_1, date_2, ratio_value, client_value, sido_value, land_area, build_area, cost)
 
                 #### 이게 실행되어야해
-                # pred_ratio, pred_value = build_model(df)
+                pred_ratio, pred_value = build_model(df)
                 ### 이거이거이거이거이거
 
 
