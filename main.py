@@ -13,7 +13,7 @@ import os
 import glob
 import math
 import zipfile
-from prophet import Prophet
+
 
 # ---------------------------------#
 # Page layout
@@ -422,24 +422,3 @@ option = st.selectbox(
 st.write('You selected:', option)
 df_company = pd.read_csv('./기업데이터.csv')
 com=df_company.groupby('업체명')
-
-for company in com.groups:
-  group = com.get_group(company)
-  cutoff = "2020-12-01" #데이터 분할 기준
-  train = group[group['ds']<cutoff]
-  test = group[group['ds']>=cutoff]
-
-
-target=pd.DataFrame()
-company = '(주)케이디엔지니어링건축사사무소'
-# for company in com.groups:
-group = com.get_group(company)
-
-m = Prophet(interval_width=0.95)
-m.fit(group)
-future = m.make_future_dataframe(periods=366)
-forecast = m.predict(future)
-m.plot(forecast)
-forecast = forecast.rename(columns={'yhat': 'yhat_'+company})
-target = pd.merge(target, forecast.set_index('ds'), how='outer', left_index=True, right_index=True)
-
