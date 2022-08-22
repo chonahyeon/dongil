@@ -2,9 +2,9 @@ yfinance==0.1.72
 streamlit==1.10.0
 prophet==1.0.1
 pystan==2.19.1.1
+cmdstanpy==0.9.68
 fbprophet==0.7.1
 plotly==5.9.0
 sklearn
 pandas
 numpy
-cmdstanpy==0.9.68
