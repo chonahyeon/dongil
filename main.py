@@ -420,5 +420,5 @@ option = st.selectbox(
        '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소'))
 
 st.write('You selected:', option)
-df_company = pd.read_csv('./기업데이터.csv')
-com=df_company.groupby('업체명')
+# df_company = pd.read_csv('./기업데이터.csv')
+# com=df_company.groupby('업체명')
