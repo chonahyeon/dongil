@@ -3,3 +3,9 @@ sklearn
 joblib
 agent
 matplotlib
+fbprophet
+plotly
+pystan
+holidays
+altair
+numpy
