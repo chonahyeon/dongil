@@ -409,5 +409,5 @@ result_value = st.write('예측_계산가격 ')
 # 노란색을 사용하기위해 warning 을 사용
 st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 
-
+##
 
