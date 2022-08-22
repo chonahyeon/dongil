@@ -1,9 +1,10 @@
-pandas
-sklearn
-joblib
-streamlit
+Cython
 numpy
+pandas
+matplotlib
+convertdate
 pystan==2.19.1.1
-plotly==4.14.3
-fbprophet==0.7.1
-yfinance==0.1.59
+yfinance
+streamlit
+plotly
+fbprophet
