@@ -2,4 +2,3 @@ streamlit
 sklearn
 joblib
 agent
-fbprophet
