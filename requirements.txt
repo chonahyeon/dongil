@@ -3,10 +3,11 @@ sklearn
 joblib
 agent
 matplotlib
-fbprophet
 pip
+jinja
 plotly
 pystan
 holidays
 altair
 protobuf
+fbprophet
