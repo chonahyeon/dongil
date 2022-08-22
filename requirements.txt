@@ -2,15 +2,5 @@ streamlit
 sklearn
 joblib
 agent
-Cython
-numpy
-pandas
-convertdate
-plotly
-matplotlib
-pystan==2.19.1.1
+pystan
 fbprophet
-wetterdienst==0.15.0
-requests
-
-
