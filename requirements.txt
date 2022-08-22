@@ -2,5 +2,6 @@ streamlit
 sklearn
 joblib
 agent
-fbprophet
+prophet
 matplotlib
+pystan
