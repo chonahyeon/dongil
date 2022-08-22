@@ -2,4 +2,7 @@ streamlit
 sklearn
 joblib
 agent
+pystan
 fbprophet
+plotly
+altair

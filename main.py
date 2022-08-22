@@ -13,7 +13,13 @@ import os
 import glob
 import math
 import zipfile
-from prophet import Prophet
+from streamlit import caching
+import pystan
+from fbprophet import Prophet
+from fbprophet.plot import add_changepoints_to_plot
+from fbprophet.diagnostics import cross_validation
+from fbprophet.diagnostics import performance_metrics
+from fbprophet.plot import plot_cross_validation_metric
 
 # ---------------------------------#
 # Page layout
