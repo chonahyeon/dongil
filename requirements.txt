@@ -2,10 +2,3 @@ streamlit
 sklearn
 joblib
 agent
-matplotlib
-plotly
-pystan
-holidays
-altair
-protobuf
-fbprophet
