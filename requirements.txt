@@ -4,6 +4,7 @@ joblib
 agent
 matplotlib
 fbprophet
+pip
 plotly
 pystan
 holidays
