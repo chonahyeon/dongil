@@ -413,6 +413,30 @@ st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 ##
 
 st.subheader('2. 타기업 분석 ')
+df_all_1 = pd.read_('./기업데이터.csv')
+df_all_1 = df_all_1[(df_all_1['y']>0.975)&(df_all_1['y']<1.025)]
+com=df_all_1.groupby('업체명')
+
+for company in com.groups:
+  group = com.get_group(company)
+  cutoff = "2020-12-01" #데이터 분할 기준
+  train = group[group['ds']<cutoff]
+  test = group[group['ds']>=cutoff]
+
+
+target=pd.DataFrame()
+company = '주식회사 영화키스톤건축사사무소'
+# for company in com.groups:
+group = com.get_group(company)
+
+m = Prophet(interval_width=0.95)
+m.fit(group)
+future = m.make_future_dataframe(periods=366)
+forecast = m.predict(future)
+m.plot(forecast)
+forecast = forecast.rename(columns={'yhat': 'yhat_'+company})
+target = pd.merge(target, forecast.set_index('ds'), how='outer', left_index=True, right_index=True)
+
 option = st.selectbox(
      '기업리스트',
      ('(주)케이디엔지니어링건축사사무소', '(주)토펙엔지니어링건축사사무소', '(주)토문엔지니어링 건축사사무소',
