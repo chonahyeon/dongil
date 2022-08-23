@@ -435,6 +435,7 @@ if st.button("타기업 분석"):
     ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
+    plt.title(option,size = 12)
     fig.tight_layout()
     st.pyplot(fig)
 
