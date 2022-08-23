@@ -12,11 +12,7 @@ import datetime
 import os
 import glob
 import math
-
-
-
-
-
+import zipfile
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
@@ -414,6 +410,7 @@ result_value = st.write('예측_계산가격 ')
 st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 
 ##
+
 st.subheader('2. 타기업 분석 ')
 option = st.selectbox(
      '기업리스트',
@@ -422,5 +419,3 @@ option = st.selectbox(
        '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소'))
 
 st.write('You selected:', option)
-# df_company = pd.read_csv('./기업데이터.csv')
-# com=df_company.groupby('업체명')
