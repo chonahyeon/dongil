@@ -13,6 +13,7 @@ import os
 import glob
 import math
 import zipfile
+import matplotlib.pyplot as plt
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
