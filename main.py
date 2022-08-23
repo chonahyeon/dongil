@@ -13,9 +13,8 @@ import os
 import glob
 import math
 import zipfile
-import matplotlib.pyplot as plt
-# matplotlib의 폰트 설정을 위한 코드
-from matplotlib import font_manager, rc
+
+
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
@@ -28,24 +27,6 @@ enc = OneHotEncoder(handle_unknown='error')
 # ---------------------------------#
 
 
-
-def fix_font():
-    # From https://HC.Dle.pw, By Jinseo Kim
-    # v1.0.0
-    import os
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
-    os.system("apt-get install -y fonts-nanum")
-    os.system("fc-cache -fv")
-    mpl.font_manager._rebuild()
-    findfont = mpl.font_manager.fontManager.findfont
-    mpl.font_manager.findfont = findfont
-    mpl.backends.backend_agg.findfont = findfont
-    plt.rcParams['font.family'] = "NanumBarunGothic"
-    plt.rcParams['axes.unicode_minus'] = False
-
-
-fix_font()
 # Model building
 def build_model(df):
 
@@ -441,8 +422,9 @@ option = st.selectbox(
      ('(주)케이디엔지니어링건축사사무소', '(주)토펙엔지니어링건축사사무소', '(주)토문엔지니어링 건축사사무소',
        '주식회사 아이티엠코퍼레이션건축사사무소', '(주)한림이앤씨건축사사무소', '(주)태원종합기술단건축사사무소',
        '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소'))
-st.write('You selected:', option)
+
 if st.button("타기업 분석"):
+    st.write(option+' 기업 분석')
     test_plt = pd.read_csv('./기업들/'+option+'_prophet.csv')
     figsize = (10, 6)
     xlabel = 'ds'
@@ -457,7 +439,7 @@ if st.button("타기업 분석"):
     ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-    plt.title(option,size = 12)
+
     fig.tight_layout()
     st.pyplot(fig)
 
