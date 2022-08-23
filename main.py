@@ -12,11 +12,8 @@ import datetime
 import os
 import glob
 import math
-import zipfile
 import matplotlib.pyplot as plt
-from pylab import rcParams
-from statsmodels.tsa.seasonal import seasonal_decompose
-from fbprophet import Prophet
+
 
 
 
