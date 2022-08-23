@@ -1,5 +1,4 @@
 streamlit
 sklearn
-padnas
 matplotlib
 seaborn
