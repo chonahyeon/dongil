@@ -421,7 +421,7 @@ option = st.selectbox(
        '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소'))
 st.write('You selected:', option)
 if st.button("타기업 분석"):
-    test_plt = pd.read_csv('./기업들/'+option+'.csv')
+    test_plt = pd.read_csv('./기업들/'+option+'_prophet.csv')
     figsize = (10, 6)
     xlabel = 'ds'
     ylabel = 'y'
