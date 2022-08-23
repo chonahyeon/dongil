@@ -2,3 +2,5 @@ streamlit
 sklearn
 matplotlib
 seaborn
+joblib
+agent
