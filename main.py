@@ -14,6 +14,8 @@ import glob
 import math
 import zipfile
 import matplotlib.pyplot as plt
+# matplotlib의 폰트 설정을 위한 코드
+from matplotlib import font_manager, rc
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
@@ -24,6 +26,26 @@ scaler = StandardScaler()
 etr = ExtraTreesRegressor()
 enc = OneHotEncoder(handle_unknown='error')
 # ---------------------------------#
+
+
+
+def fix_font():
+    # From https://HC.Dle.pw, By Jinseo Kim
+    # v1.0.0
+    import os
+    import matplotlib as mpl
+    import matplotlib.pyplot as plt
+    os.system("apt-get install -y fonts-nanum")
+    os.system("fc-cache -fv")
+    mpl.font_manager._rebuild()
+    findfont = mpl.font_manager.fontManager.findfont
+    mpl.font_manager.findfont = findfont
+    mpl.backends.backend_agg.findfont = findfont
+    plt.rcParams['font.family'] = "NanumBarunGothic"
+    plt.rcParams['axes.unicode_minus'] = False
+
+
+fix_font()
 # Model building
 def build_model(df):
 
