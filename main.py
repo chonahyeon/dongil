@@ -436,5 +436,5 @@ if st.button("타기업 분석"):
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     fig.tight_layout()
-    plt.show()
+    st.pyplot(fig)
 
