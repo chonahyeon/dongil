@@ -462,7 +462,7 @@ with st.sidebar.header('0. Select CSV or Model'):
 # Main panel
 
 # Displays the dataset
-st.subheader('2. 타기업 분석 ')
+st.subheader('1. 타기업 분석 ')
 
 option = st.selectbox(
     '기업리스트',
