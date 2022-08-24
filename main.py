@@ -494,7 +494,7 @@ if st.button("타기업 분석"):
     st.pyplot(fig)
 
     st.write(option2 + ' 기업 분석 - 2022년')
-    test_plt = pd.read_csv('./기업들/' + option2 + '_prophet.csv')
+    test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
     test_plt = test_plt[test_plt['ds'].str.contains('2022')]
     figsize = (10, 6)
     xlabel = 'ds'
@@ -504,7 +504,7 @@ if st.button("타기업 분석"):
     ax = fig.add_subplot(111)
     fcst_t = test_plt['ds'].dt.to_pydatetime()
     ax.plot(test_plt['ds'].dt.to_pydatetime(), test_plt['y'], 'k.')
-    ax.plot(fcst_t, test_plt['yhat_' + option2], ls='-', c='#0072B2')
+    ax.plot(fcst_t, test_plt['yhat_' + option], ls='-', c='#0072B2')
     ax.fill_between(fcst_t, test_plt['yhat_lower'], test_plt['yhat_upper'], color='#0072B2', alpha=0.2)
     ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
     ax.set_xlabel(xlabel)
