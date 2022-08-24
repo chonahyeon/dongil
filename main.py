@@ -465,3 +465,5 @@ if st.button("타기업 분석"):
     st.pyplot(fig)
 
 st.subheader('3. 유사공고 분석 ')
+if st.button("유사공고 분석 확인하기"):
+    st.dataframe(pred_df)
