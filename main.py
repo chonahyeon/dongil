@@ -474,7 +474,7 @@ if st.button("타기업 분석"):
     com_ls = ['(주)케이디엔지니어링건축사사무소', '(주)토펙엔지니어링건축사사무소', '(주)토문엔지니어링 건축사사무소',
      '주식회사 아이티엠코퍼레이션건축사사무소', '(주)한림이앤씨건축사사무소', '(주)태원종합기술단건축사사무소',
      '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소']
-    for option in range(com_ls):
+    for option in (com_ls):
         st.write(option + ' 기업 분석 - 전체')
         test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
         test_plt = test_plt.iloc[:-100, :]
