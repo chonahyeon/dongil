@@ -426,6 +426,7 @@ option = st.selectbox(
 if st.button("타기업 분석"):
     st.write(option+' 기업 분석')
     test_plt = pd.read_csv('./기업들/'+option+'_prophet.csv')
+    test_plt = test_plt.iloc[:-100,:]
     figsize = (10, 6)
     xlabel = 'ds'
     ylabel = 'y'
@@ -443,3 +444,4 @@ if st.button("타기업 분석"):
     fig.tight_layout()
     st.pyplot(fig)
 
+st.subheader('3. 유사공고 분석 ')
