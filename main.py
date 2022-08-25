@@ -24,7 +24,7 @@ st.set_page_config(page_title='동일건축 프로젝트 By 데이터청년캠�
 scaler = StandardScaler()
 etr = ExtraTreesRegressor()
 enc = OneHotEncoder(handle_unknown='error')
-
+euclidean=pd.DataFrame()
 # ---------------------------------#
 
 
@@ -226,7 +226,6 @@ def build_model(df):
 
 # ---------------------------------#
 pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
-euclidean=pd.DataFrame()
 if 'pred_ratio' not in st.session_state:
   st.session_state["pred_ratio"] = 0
 if 'pred_value' not in st.session_state:
