@@ -464,4 +464,5 @@ if st.button("타기업 분석"):
 
 st.subheader('3. 유사공고 분석 ')
 st.write('유사공고 기업 분석')
-# st.dataframe(pred_df)
+euclidean=pd.DataFrame()
+st.dataframe(euclidean)
