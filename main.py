@@ -475,4 +475,4 @@ st.subheader('3. 유사공고 분석 ')
 st.write('유사공고 기업 분석')
 # euclidean = pd.DataFrame()
 if st.button("유사도분석"):
-    st.dataframe(euclidean)
+    st.table(euclidean)
