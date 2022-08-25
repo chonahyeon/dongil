@@ -246,7 +246,7 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     }
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
-    euclidean = new_df[['낙찰하한율','입찰일', '연면적','대지면적','기초금액']]
+    euclidean = new_df[['낙찰하한율', '연면적','대지면적','기초금액']]
 
 
 
@@ -373,15 +373,21 @@ with st.sidebar.header('0. Select CSV or Model'):
                 st.info('Awaiting for CSV file to be uploaded.')
                 df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
             predict_value(date_1, date_2, ratio_value, client_value, sido_value, land_area, build_area, cost)
-            
+
 
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
+            ### 이거이거이거이거이거
             euclidean['예가율'] = pred_ratio
             euclidean['공고번호'] = 99999999999
-            ### 이거이거이거이거이거
-
-
+            euclidean = euclidean[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']]
+            concat_df = pd.read_csv('./최종모델기초데이터.csv')
+            concat_df_2 = concat_df[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']]
+            euclidean = pd.concat([euclidean,concat_df_2])
+            euclidean_val = pd.DataFrame(squareform(pdist(df.iloc[:, 1:])), columns=df.공고번호.unique(),
+                                     index=df.공고번호.unique())
+            list_e = list(euclidean.loc[9999999999].sort_values().head(10).index)
+            euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
 
 
 
