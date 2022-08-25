@@ -224,7 +224,7 @@ def build_model(df):
 
 
 # ---------------------------------#
-
+pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
 if 'pred_ratio' not in st.session_state:
   st.session_state["pred_ratio"] = 0
 if 'pred_value' not in st.session_state:
@@ -366,7 +366,6 @@ with st.sidebar.header('0. Select CSV or Model'):
 
     with st.sidebar.subheader('Predict Button'):
         if st.button('Show prediction'):
-            pred_df = pd.DataFrame(columns=['공고일', '입찰일', '낙찰하한율', '발주청', '시도', '연면적', '대지면적', '기초금액'])
             if uploaded_file is not None:
                 df = pd.read_csv(uploaded_file)
             else:
@@ -401,7 +400,6 @@ with st.sidebar.header('0. Select CSV or Model'):
 
 # Displays the dataset
 st.subheader('1. 예측하기')
-
 st.dataframe(pred_df)
 
 pred_ratio = 0
