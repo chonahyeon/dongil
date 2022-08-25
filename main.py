@@ -24,6 +24,7 @@ st.set_page_config(page_title='동일건축 프로젝트 By 데이터청년캠�
 scaler = StandardScaler()
 etr = ExtraTreesRegressor()
 enc = OneHotEncoder(handle_unknown='error')
+euclidean=pd.DataFrame()
 # ---------------------------------#
 
 
@@ -464,5 +465,5 @@ if st.button("타기업 분석"):
 
 st.subheader('3. 유사공고 분석 ')
 st.write('유사공고 기업 분석')
-euclidean=pd.DataFrame()
+
 st.dataframe(euclidean)
