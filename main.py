@@ -380,9 +380,9 @@ with st.sidebar.header('0. Select CSV or Model'):
             ### 이거이거이거이거이거
             euclidean['예가율'] = pred_ratio
             euclidean['공고번호'] = 99999999999
-            euclidean = euclidean[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']]
+            euclidean = euclidean[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']].astype(float)
             concat_df = pd.read_csv('./최종모델기초데이터.csv')
-            concat_df_2 = concat_df[['G2B공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']].rename(columns = {'G2B공고번호':'공고번호'})
+            concat_df_2 = concat_df[['G2B공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']].astype(float).rename(columns = {'G2B공고번호':'공고번호'})
             euclidean = pd.concat([euclidean,concat_df_2])
             euclidean_val = pd.DataFrame(squareform(pdist(euclidean.iloc[:, 1:])), columns=euclidean['공고번호'].unique(),index=euclidean['공고번호'].unique())
             list_e = list(euclidean.loc[9999999999].sort_values().head(10).index)
