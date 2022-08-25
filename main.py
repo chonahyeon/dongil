@@ -233,7 +233,7 @@ if 'pred_value' not in st.session_state:
 def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost) :
     # pred_val = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
     global pred_df
-
+    global euclidean
     new_data = {
         '공고일': [date_1],
         '입찰일': [date_2],
@@ -246,7 +246,7 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     }
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
-
+    euclidean = new_df[['낙찰하한율','입찰일', '연면적','대지면적','기초금액']]
 
 
 
@@ -373,10 +373,12 @@ with st.sidebar.header('0. Select CSV or Model'):
                 st.info('Awaiting for CSV file to be uploaded.')
                 df = pd.read_csv('./입찰데이터_수정용_0804.csv', index_col=0)
             predict_value(date_1, date_2, ratio_value, client_value, sido_value, land_area, build_area, cost)
-
+            euclidean['예가율']
 
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
+            euclidean['예가율'] = pred_ratio
+            euclidean['공고번호'] = 99999999999
             ### 이거이거이거이거이거
 
 
