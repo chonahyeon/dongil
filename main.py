@@ -233,7 +233,7 @@ if 'pred_value' not in st.session_state:
 def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost) :
     # pred_val = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
     global pred_df
-    euclidean = pd.DataFrame()
+
     global euclidean
     new_data = {
         '공고일': [date_1],
@@ -472,5 +472,5 @@ if st.button("타기업 분석"):
 
 st.subheader('3. 유사공고 분석 ')
 st.write('유사공고 기업 분석')
-
+euclidean = pd.DataFrame()
 st.dataframe(euclidean)
