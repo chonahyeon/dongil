@@ -386,7 +386,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             euclidean = pd.concat([euclidean,concat_df])
             euclidean_val = pd.DataFrame(squareform(pdist(euclidean.iloc[:, 1:])), columns=euclidean['공고번호'].unique(),index=euclidean['공고번호'].unique())
             # list_e = list(euclidean_val.loc[(9999999999).astype(float)].sort_values().head(10).index)
-            list_e = list(euclidean_val.loc[(9999999999).astype(float)].sort_values().head(10).index)
+            list_e = list(euclidean_val.loc[float(9999999999)].sort_values().head(10).index)
             euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
 
 
