@@ -24,7 +24,7 @@ st.set_page_config(page_title='동일건축 프로젝트 By 데이터청년캠�
 scaler = StandardScaler()
 etr = ExtraTreesRegressor()
 enc = OneHotEncoder(handle_unknown='error')
-euclidean=pd.DataFrame()
+
 # ---------------------------------#
 
 
@@ -233,6 +233,7 @@ if 'pred_value' not in st.session_state:
 def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost) :
     # pred_val = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
     global pred_df
+    euclidean = pd.DataFrame()
     global euclidean
     new_data = {
         '공고일': [date_1],
@@ -384,7 +385,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             concat_df = pd.read_csv('./euclidean.csv').astype(float)
             euclidean = pd.concat([euclidean,concat_df])
             euclidean_val = pd.DataFrame(squareform(pdist(euclidean.iloc[:, 1:])), columns=euclidean['공고번호'].unique(),index=euclidean['공고번호'].unique())
-            list_e = list(euclidean_val.loc[(9999999999)].sort_values().head(10).index)
+            list_e = list(euclidean_val.loc[(9999999999).astype(float)].sort_values().head(10).index)
             euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
 
 
