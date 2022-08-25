@@ -392,7 +392,58 @@ with st.sidebar.header('0. Select CSV or Model'):
 
             ##
 
-
+            # st.subheader('2. 타기업 분석 ')
+            #
+            # option = st.selectbox(
+            #     '기업리스트',
+            #     ('(주)케이디엔지니어링건축사사무소', '(주)토펙엔지니어링건축사사무소', '(주)토문엔지니어링 건축사사무소',
+            #      '주식회사 아이티엠코퍼레이션건축사사무소', '(주)한림이앤씨건축사사무소', '(주)태원종합기술단건축사사무소',
+            #      '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소'))
+            #
+            # if st.button("타기업 분석"):
+            #     st.write(option + ' 기업 분석 - 전체')
+            #     test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
+            #     test_plt = test_plt.iloc[:-100, :]
+            #     figsize = (10, 6)
+            #     xlabel = 'ds'
+            #     ylabel = 'y'
+            #     test_plt['ds'] = pd.to_datetime(test_plt['ds'], errors='coerce')
+            #     fig = plt.figure(facecolor='w', figsize=figsize)
+            #     ax = fig.add_subplot(111)
+            #     fcst_t = test_plt['ds'].dt.to_pydatetime()
+            #     ax.plot(test_plt['ds'].dt.to_pydatetime(), test_plt['y'], 'k.')
+            #     ax.plot(fcst_t, test_plt['yhat_' + option], ls='-', c='#0072B2')
+            #     ax.fill_between(fcst_t, test_plt['yhat_lower'], test_plt['yhat_upper'], color='#0072B2', alpha=0.2)
+            #     ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
+            #     ax.set_xlabel(xlabel)
+            #     ax.set_ylabel(ylabel)
+            #
+            #     fig.tight_layout()
+            #     st.pyplot(fig)
+            #
+            #     st.write(option + ' 기업 분석 - 2022년')
+            #     test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
+            #     test_plt = test_plt[test_plt['ds'].str.contains('2022')]
+            #     figsize = (10, 6)
+            #     xlabel = 'ds'
+            #     ylabel = 'y'
+            #     test_plt['ds'] = pd.to_datetime(test_plt['ds'], errors='coerce')
+            #     fig = plt.figure(facecolor='w', figsize=figsize)
+            #     ax = fig.add_subplot(111)
+            #     fcst_t = test_plt['ds'].dt.to_pydatetime()
+            #     ax.plot(test_plt['ds'].dt.to_pydatetime(), test_plt['y'], 'k.')
+            #     ax.plot(fcst_t, test_plt['yhat_' + option], ls='-', c='#0072B2')
+            #     ax.fill_between(fcst_t, test_plt['yhat_lower'], test_plt['yhat_upper'], color='#0072B2', alpha=0.2)
+            #     ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
+            #     ax.set_xlabel(xlabel)
+            #     ax.set_ylabel(ylabel)
+            #
+            #     fig.tight_layout()
+            #     st.pyplot(fig)
+            #
+            # st.subheader('3. 유사공고 분석 ')
+            # st.write('유사공고 기업 분석')
+            # st.dataframe(pred_df)
 
 
 
@@ -420,44 +471,44 @@ option2 = st.selectbox(
     ('(주)케이디엔지니어링건축사사무소', '(주)토펙엔지니어링건축사사무소', '(주)토문엔지니어링 건축사사무소',
      '주식회사 아이티엠코퍼레이션건축사사무소', '(주)한림이앤씨건축사사무소', '(주)태원종합기술단건축사사무소',
      '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소'))
-
-if st.button("타기업 분석"):
-    st.write(option2 + ' 기업 분석 - 전체')
-    test_plt = pd.read_csv('./기업들/' + option2 + '_prophet.csv')
-    test_plt = test_plt.iloc[:-100, :]
-    figsize = (10, 6)
-    xlabel = 'ds'
-    ylabel = 'y'
-    test_plt['ds'] = pd.to_datetime(test_plt['ds'], errors='coerce')
-    fig = plt.figure(facecolor='w', figsize=figsize)
-    ax = fig.add_subplot(111)
-    fcst_t = test_plt['ds'].dt.to_pydatetime()
-    ax.plot(test_plt['ds'].dt.to_pydatetime(), test_plt['y'], 'k.')
-    ax.plot(fcst_t, test_plt['yhat_' + option2], ls='-', c='#0072B2')
-    ax.fill_between(fcst_t, test_plt['yhat_lower'], test_plt['yhat_upper'], color='#0072B2', alpha=0.2)
-    ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
-
-    fig.tight_layout()
-    st.pyplot(fig)
-
-    st.write(option2 + ' 기업 분석 - 2022년')
-    test_plt = pd.read_csv('./기업들/' + option2 + '_prophet.csv')
-    test_plt = test_plt[test_plt['ds'].str.contains('2022')]
-    figsize = (10, 6)
-    xlabel = 'ds'
-    ylabel = 'y'
-    test_plt['ds'] = pd.to_datetime(test_plt['ds'], errors='coerce')
-    fig = plt.figure(facecolor='w', figsize=figsize)
-    ax = fig.add_subplot(111)
-    fcst_t = test_plt['ds'].dt.to_pydatetime()
-    ax.plot(test_plt['ds'].dt.to_pydatetime(), test_plt['y'], 'k.')
-    ax.plot(fcst_t, test_plt['yhat_' + option2], ls='-', c='#0072B2')
-    ax.fill_between(fcst_t, test_plt['yhat_lower'], test_plt['yhat_upper'], color='#0072B2', alpha=0.2)
-    ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
-
-    fig.tight_layout()
-    st.pyplot(fig)
+#
+# if st.button("타기업 분석"):
+#     st.write(option2 + ' 기업 분석 - 전체')
+#     test_plt = pd.read_csv('./기업들/' + option2 + '_prophet.csv')
+#     test_plt = test_plt.iloc[:-100, :]
+#     figsize = (10, 6)
+#     xlabel = 'ds'
+#     ylabel = 'y'
+#     test_plt['ds'] = pd.to_datetime(test_plt['ds'], errors='coerce')
+#     fig = plt.figure(facecolor='w', figsize=figsize)
+#     ax = fig.add_subplot(111)
+#     fcst_t = test_plt['ds'].dt.to_pydatetime()
+#     ax.plot(test_plt['ds'].dt.to_pydatetime(), test_plt['y'], 'k.')
+#     ax.plot(fcst_t, test_plt['yhat_' + option2], ls='-', c='#0072B2')
+#     ax.fill_between(fcst_t, test_plt['yhat_lower'], test_plt['yhat_upper'], color='#0072B2', alpha=0.2)
+#     ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
+#     ax.set_xlabel(xlabel)
+#     ax.set_ylabel(ylabel)
+#
+#     fig.tight_layout()
+#     st.pyplot(fig)
+#
+#     st.write(option2 + ' 기업 분석 - 2022년')
+#     test_plt = pd.read_csv('./기업들/' + option2 + '_prophet.csv')
+#     test_plt = test_plt[test_plt['ds'].str.contains('2022')]
+#     figsize = (10, 6)
+#     xlabel = 'ds'
+#     ylabel = 'y'
+#     test_plt['ds'] = pd.to_datetime(test_plt['ds'], errors='coerce')
+#     fig = plt.figure(facecolor='w', figsize=figsize)
+#     ax = fig.add_subplot(111)
+#     fcst_t = test_plt['ds'].dt.to_pydatetime()
+#     ax.plot(test_plt['ds'].dt.to_pydatetime(), test_plt['y'], 'k.')
+#     ax.plot(fcst_t, test_plt['yhat_' + option2], ls='-', c='#0072B2')
+#     ax.fill_between(fcst_t, test_plt['yhat_lower'], test_plt['yhat_upper'], color='#0072B2', alpha=0.2)
+#     ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
+#     ax.set_xlabel(xlabel)
+#     ax.set_ylabel(ylabel)
+#
+#     fig.tight_layout()
+#     st.pyplot(fig)
