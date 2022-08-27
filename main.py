@@ -15,6 +15,7 @@ import math
 import zipfile
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import squareform, pdist
+import SessionState
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
