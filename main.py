@@ -380,7 +380,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             ### 이거이거이거이거이거
             st.session_state['euclide_df'] = st.session_state['euclide_df'].append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
 
-            st.session_state['concat_df'] =pd.concat(st.session_state['euclide_df'],st.session_state['concat_df'], axis = 0)
+            result_df = pd.concat(st.session_state['euclide_df'],st.session_state['concat_df'], axis = 0)
 
 
 
