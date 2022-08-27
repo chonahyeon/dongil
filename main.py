@@ -226,6 +226,7 @@ def build_model(df):
 
 # ---------------------------------#
 pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
+euclide_df = pd.DataFrame(columns=['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율'])
 if 'pred_ratio' not in st.session_state:
   st.session_state["pred_ratio"] = 0
 if 'pred_value' not in st.session_state:
@@ -476,7 +477,7 @@ if st.button("타기업 분석"):
 st.subheader('3. 유사공고 분석 ')
 
 st.write('유사공고 기업 분석')
-euclide_df = pd.DataFrame(columns=['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율'])
+
 if st.button("유사도분석"):
 
     concat_df = pd.read_csv('./euclidean.csv').astype(float)[['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율']]
