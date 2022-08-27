@@ -491,3 +491,55 @@ if st.button('유사공고 확인하기'):
 st.caption('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2022년 08월 데이터청년캠퍼스 D1 팀이 제작하였습니다.')
 st.caption('만든이 : 전성현 신채현 이다희 조나현')
 st.caption('연락처(전성현) : pengping@kakao.com , 010-4724-0871')
+
+##########
+# Footer #                         #  https://discuss.streamlit.io/t/st-footer/6447
+##########
+
+def image(src_as_string, **style):
+    return img(src=src_as_string, style=styles(**style))
+
+def link(link, text, **style):
+    return a(_href=link, _target="_blank", style=styles(**style))(text)
+
+def layout(*args):
+    style = """
+    <style>
+        MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        .stApp { bottom: 60px; }
+    </style>
+    """
+
+    style_div = styles(
+        position="fixed",
+        right=0,
+        bottom=0,
+        margin=px(0, 15, 0, 0),
+        text_align="center",
+        opacity=0.5,
+    )
+
+    body = p()
+    foot = div(
+        style=style_div
+    )(
+        body
+    )
+
+    st.markdown(style, unsafe_allow_html=True)
+    for arg in args:
+        if isinstance(arg, str):
+            body(arg)
+        elif isinstance(arg, HtmlElement):
+            body(arg)
+    st.markdown(str(foot), unsafe_allow_html=True)
+
+def footer():
+    myargs = [
+        link("https://bigganblog.org/2021/03/গতির-সমীকরণ", image('https://raw.githubusercontent.com/rafisics/suvat_calculator/main/img/bigganblog_badge_black_white.png',)),
+    ]
+    layout(*myargs)
+
+if __name__ == "__main__":
+    footer()
