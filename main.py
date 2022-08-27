@@ -225,7 +225,7 @@ def build_model(df):
 
 
 # ---------------------------------#
-pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
+
 
 if 'pred_ratio' not in st.session_state:
   st.session_state["pred_ratio"] = 0
@@ -233,7 +233,8 @@ if 'pred_value' not in st.session_state:
   st.session_state["pred_value"] = 0
 def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost) :
     # pred_val = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
-    global pred_df
+
+
 
     new_data = {
         '공고일': [date_1],
@@ -246,7 +247,7 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
         '기초금액': [cost],
     }
     new_df = pd.DataFrame(new_data)
-    pred_df = pd.concat([pred_df,new_df], axis = 0)
+    st.session_state['pred_df'] = pd.concat([st.session_state['pred_df'],new_df], axis = 0)
 
 
 
@@ -402,7 +403,10 @@ with st.sidebar.header('0. Select CSV or Model'):
 
 # Displays the dataset
 st.subheader('1. 예측하기')
-st.dataframe(pred_df)
+if 'pred_df' not in st.session_state:
+    st.session_state['pred_df'] = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
+
+st.dataframe(st.session_state['pred_df'])
 
 pred_ratio = 0
 pred_value = 0
@@ -475,6 +479,9 @@ if 'result' not in st.session_state:
     st.session_state['result'] = pd.DataFrame()
 
 if st.button('유사공고 확인하기'):
+    st.subheader('입력한 데이터 예측값')
+    st.table(st.session_state['pred_df'])
+
     st.write('유사공고 기업 분석')
     st.table(st.session_state['result'])
 
