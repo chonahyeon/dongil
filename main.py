@@ -405,7 +405,7 @@ st.subheader('1. 예측하기')
 if 'pred_df' not in st.session_state:
     st.session_state['pred_df'] = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
 
-st.dataframe(st.session_state['pred_df'])
+st.table(st.session_state['pred_df'])
 
 pred_ratio = 0
 pred_value = 0
