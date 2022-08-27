@@ -492,7 +492,7 @@ if st.button('유사공고 확인하기'):
 footer="""<style>
 
 .footer {
-position: fixed;
+
 left: 0;
 bottom: 0;
 width: 100%;
