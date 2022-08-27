@@ -379,15 +379,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
-            euclidean['예가율'] = pred_ratio
-            euclidean['공고번호'] = 99999999999
-            euclidean = euclidean[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']].dropna().astype(float)
-            concat_df = pd.read_csv('./euclidean.csv').astype(float)
-            euclidean = pd.concat([euclidean,concat_df])
-            euclidean_val = pd.DataFrame(squareform(pdist(euclidean.iloc[:, 1:])), columns=euclidean['공고번호'].unique(),index=euclidean['공고번호'].unique())
 
-            # list_e = list(euclidean_val.loc[int(99999999999)].sort_values().head(10).index)
-            # euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
 
 
 
@@ -472,7 +464,18 @@ if st.button("타기업 분석"):
     st.pyplot(fig)
 
 st.subheader('3. 유사공고 분석 ')
+
 st.write('유사공고 기업 분석')
+
+
+euclidean['예가율'] = pred_ratio
+euclidean['공고번호'] = 99999999999
+euclidean = euclidean[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']].dropna().astype(float)
+concat_df = pd.read_csv('./euclidean.csv').astype(float)
+euclidean = pd.concat([euclidean, concat_df])
+euclidean_val = pd.DataFrame(squareform(pdist(euclidean.iloc[:, 1:])), columns=euclidean['공고번호'].unique(),index=euclidean['공고번호'].unique())
+list_e = list(euclidean_val.loc[99999999999].sort_values().head(10).index)
+euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
 # euclidean = pd.DataFrame()
 # if st.button("유사도분석"):
-    # st.table(euclidean)
+st.table(euclidean)
