@@ -379,7 +379,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
             st.session_state['euclide_df'] = st.session_state['euclide_df'].append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
-
+            
 
 
 
@@ -463,7 +463,7 @@ if st.button("타기업 분석"):
 st.subheader('3. 유사공고 분석 ')
 if 'euclide_df' not in st.session_state:
     st.session_state['euclide_df'] = pd.DataFrame(columns=['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율'])
-
-st.write('유사공고 기업 분석')
-st.dataframe(st.session_state['euclide_df'])
+if st.button('유사공고 확인하기'):
+    st.write('유사공고 기업 분석')
+    st.dataframe(st.session_state['euclide_df'])
 
