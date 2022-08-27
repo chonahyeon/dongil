@@ -401,7 +401,7 @@ with st.sidebar.header('0. Select CSV or Model'):
 # Main panel
 
 # Displays the dataset
-st.subheader('1. 예측하기')
+st.header('1. 예측하기')
 if 'pred_df' not in st.session_state:
     st.session_state['pred_df'] = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
 
@@ -418,7 +418,7 @@ st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 
 #
 
-st.subheader('2. 타기업 분석 ')
+st.header('2. 타기업 분석 ')
 
 option = st.selectbox(
     '기업리스트',
@@ -467,7 +467,7 @@ if st.button("타기업 분석"):
     fig.tight_layout()
     st.pyplot(fig)
 
-st.subheader('3. 유사공고 분석 ')
+st.header('3. 유사공고 분석 ')
 if 'euclide_df' not in st.session_state:
     st.session_state['euclide_df'] = pd.DataFrame(columns=['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율'])
 
@@ -504,7 +504,7 @@ text-align: right;
 <div class="footer">
 <p>Developed with 데이터청년캠퍼스 D1 Team<a style='display: block; font-size : 12px ; text-align: right;' </a></p>
 <p>Developer : 전성현 신채현 이다희 조나현 <a style='display: block; font-size : 12px ; text-align: right;' </a></p>
-<p>Developer : Developer Contact(전성현) : pengping@kakao.com , 010-4724-0871 <a style='display: block; font-size : 12px ; text-align: right;' </a></p>
+<p>Developer Contact(전성현) : pengping@kakao.com , 010-4724-0871 <a style='display: block; font-size : 12px ; text-align: right;' </a></p>
 
 </div>
 """
