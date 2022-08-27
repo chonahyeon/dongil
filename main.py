@@ -492,54 +492,31 @@ st.caption('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 st.caption('만든이 : 전성현 신채현 이다희 조나현')
 st.caption('연락처(전성현) : pengping@kakao.com , 010-4724-0871')
 
-##########
-# Footer #                         #  https://discuss.streamlit.io/t/st-footer/6447
-##########
+footer="""<style>
+a:link , a:visited{
+color: blue;
+background-color: transparent;
+text-decoration: underline;
+}
 
-def image(src_as_string, **style):
-    return img(src=src_as_string, style=styles(**style))
+a:hover,  a:active {
+color: red;
+background-color: transparent;
+text-decoration: underline;
+}
 
-def link(link, text, **style):
-    return a(_href=link, _target="_blank", style=styles(**style))(text)
-
-def layout(*args):
-    style = """
-    <style>
-        MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        .stApp { bottom: 60px; }
-    </style>
-    """
-
-    style_div = styles(
-        position="fixed",
-        right=0,
-        bottom=0,
-        margin=px(0, 15, 0, 0),
-        text_align="center",
-        opacity=0.5,
-    )
-
-    body = p()
-    foot = div(
-        style=style_div
-    )(
-        body
-    )
-
-    st.markdown(style, unsafe_allow_html=True)
-    for arg in args:
-        if isinstance(arg, str):
-            body(arg)
-        elif isinstance(arg, HtmlElement):
-            body(arg)
-    st.markdown(str(foot), unsafe_allow_html=True)
-
-def footer():
-    myargs = [
-        link("https://bigganblog.org/2021/03/গতির-সমীকরণ", image('https://raw.githubusercontent.com/rafisics/suvat_calculator/main/img/bigganblog_badge_black_white.png',)),
-    ]
-    layout(*myargs)
-
-if __name__ == "__main__":
-    footer()
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: white;
+color: black;
+text-align: center;
+}
+</style>
+<div class="footer">
+<p>Developed with ❤ by <a style='display: block; text-align: center;' href="https://www.heflin.dev/" target="_blank">Heflin Stephen Raj S</a></p>
+</div>
+"""
+st.markdown(footer,unsafe_allow_html=True)
