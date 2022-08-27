@@ -502,9 +502,9 @@ text-align: right;
 }
 </style>
 <div class="footer">
-<p>Developed with ❤데이터청년캠퍼스 D1 Team❤<a style='display: block; text-align: right;' </a></p>
-<p>Developer : 전성현 신채현 이다희 조나현 <a style='display: block; text-align: right;' </a></p>
-<p>Developer : Developer Contact(전성현) : pengping@kakao.com , 010-4724-0871 <a style='display: block; text-align: right;' </a></p>
+<p>Developed with 데이터청년캠퍼스 D1 Team<a style='display: block; font-size : 12px ; text-align: right;' </a></p>
+<p>Developer : 전성현 신채현 이다희 조나현 <a style='display: block; font-size : 12px ; text-align: right;' </a></p>
+<p>Developer : Developer Contact(전성현) : pengping@kakao.com , 010-4724-0871 <a style='display: block; font-size : 12px ; text-align: right;' </a></p>
 
 </div>
 """
