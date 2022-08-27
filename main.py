@@ -467,5 +467,5 @@ if 'euclide_df' not in st.session_state:
     st.session_state['euclide_df'] = pd.DataFrame(columns=['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율'])
 if st.button('유사공고 확인하기'):
     st.write('유사공고 기업 분석')
-    st.dataframe(st.session_state['euclide_df'].tail(10))
+    st.dataframe(st.session_state['euclide_df'])
 
