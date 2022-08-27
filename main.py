@@ -15,7 +15,7 @@ import math
 import zipfile
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import squareform, pdist
-import SessionState
+
 # ---------------------------------#
 # Page layout
 ## Page expands to full width
@@ -378,18 +378,10 @@ with st.sidebar.header('0. Select CSV or Model'):
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
+            st.session_state['df_result'] = st.session_state['df_result'].append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
 
 
-            # new_data = {
-            #     '공고일': [date_1],
-            #     '입찰일': [date_2],
-            #     '낙찰하한율': [ratio_list[ratio_value]],
-            #     '발주청': [client_list[client_value]],
-            #     '시도': [sido_list[sido_value]],
-            #     '연면적': [land_area],
-            #     '대지면적': [build_area],
-            #     '기초금액': [cost],
-            # }
+
 
 
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
@@ -475,21 +467,3 @@ if 'euclide_df' not in st.session_state:
 st.write('유사공고 기업 분석')
 st.dataframe(st.session_state['euclide_df'])
 
-###
-#    session_state.df = session_state.df.append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
-###
-
-
-
-
-#     euclide_df = pd.DataFrame(columns=['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율'])
-#
-
-#     # concat_df=concat_df.append({'공고번호':9999,'낙찰하한율':float(ratio_list[ratio_value]),'연면적':float(land_area) ,'대지면적': float(build_area),'기초금액' : float(cost), '예가율' :float(pred_ratio)})
-#
-#     # euclidean_val = pd.DataFrame(squareform(pdist(concat_df.iloc[:, 1:])), columns=concat_df['공고번호'].unique(),index=concat_df['공고번호'].unique())
-#     # list_e = list(euclidean_val.loc[9999].sort_values().head(10).index)
-#     # euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
-#     # euclidean = pd.DataFrame()
-#
-#     st.table(euclide_df)
