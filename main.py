@@ -386,7 +386,9 @@ with st.sidebar.header('0. Select CSV or Model'):
             result_euclidean = pd.DataFrame(squareform(pdist(new_result.iloc[:, 1:])), columns=new_result['공고번호'].unique(),index=new_result['공고번호'].unique())
             list_e = list(result_euclidean.loc[9999].sort_values().head(10).index)
             st.session_state['result'] = st.session_state['concat_df'][st.session_state['concat_df']['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']].reset_index(drop = True)
-
+            st.session_state['result']['연면적'] = pd.to_numeric(st.session_state['result']['연면적'])
+            st.session_state['result']['대지면적'] = pd.to_numeric(st.session_state['result']['대지면적'])
+            st.session_state['result']['기초금액'] = pd.to_numeric(st.session_state['result']['기초금액'])
 
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
                 # print('예측한 계산된 가격 : {0:,}'.format(int(pred_cost)))
@@ -427,7 +429,7 @@ option = st.selectbox(
      '(주)한국종합건축사사무소', '(자)건축사사무소 태백', '주식회사 동우이앤씨', '주식회사 영화키스톤건축사사무소'))
 
 if st.button("타기업 분석"):
-    st.write(option + ' 기업 분석 - 전체')
+    st.subheader(option + ' 기업 분석 - 전체')
     test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
     test_plt = test_plt.iloc[:-100, :]
     figsize = (10, 6)
@@ -447,7 +449,7 @@ if st.button("타기업 분석"):
     fig.tight_layout()
     st.pyplot(fig)
 
-    st.write(option + ' 기업 분석 - 2022년')
+    st.subheader(option + ' 기업 분석 - 2022년')
     test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
     test_plt = test_plt[test_plt['ds'].str.contains('2022')]
     figsize = (10, 6)
@@ -483,7 +485,7 @@ if st.button('유사공고 확인하기'):
     result_ratio = st.write('예측_예가율 ')
     # 초록색을 사용하기위해 success 를 사용
     st.success('{:0,.4f}%'.format(float(st.session_state["pred_ratio"]) * 100))
-    st.write('유사공고 기업 분석(1순위일수록 유사한 공고입니다)')
+    st.subheader('유사공고 기업 분석(1순위일수록 유사한 공고입니다)')
     st.table(st.session_state['result'])
 
 
