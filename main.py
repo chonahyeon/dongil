@@ -380,11 +380,12 @@ with st.sidebar.header('0. Select CSV or Model'):
             ### 이거이거이거이거이거
             st.session_state['euclide_df'] = st.session_state['euclide_df'].append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
             new_euclidean = st.session_state['euclide_df'].astype(float)
-            new_concat = st.session_state['concat_df'].astype(float)
+            new_concat = st.session_state['concat_df'][['공고번호', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']].astype(float)
             new_result = pd.concat([new_euclidean,new_concat])
             result_euclidean = pd.DataFrame(squareform(pdist(new_result.iloc[:, 1:])), columns=new_result['공고번호'].unique(),index=new_result['공고번호'].unique())
             list_e = list(result_euclidean.loc[9999].sort_values().head(10).index)
-            st.session_state['result'] = new_result[new_result['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
+            base_df = pd.read_csv('./최종모델기초데이터.csv')
+            st.session_state['result'] = st.session_state['concat_df'][st.session_state['concat_df']['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
 
 
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
@@ -468,7 +469,7 @@ if 'euclide_df' not in st.session_state:
     st.session_state['euclide_df'] = pd.DataFrame(columns=['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율'])
 
 if 'concat_df' not in st.session_state:
-    st.session_state['concat_df'] = pd.read_csv('./euclidean.csv')[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']]
+    st.session_state['concat_df'] = pd.read_csv('./euclidean.csv')
 
 if 'result' not in st.session_state:
     st.session_state['result'] = pd.DataFrame()
