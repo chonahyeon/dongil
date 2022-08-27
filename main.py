@@ -26,7 +26,7 @@ etr = ExtraTreesRegressor()
 enc = OneHotEncoder(handle_unknown='error')
 
 # ---------------------------------#
-
+euclide_df = pd.DataFrame(columns=['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율'])
 
 # Model building
 def build_model(df):
@@ -226,7 +226,7 @@ def build_model(df):
 
 # ---------------------------------#
 pred_df = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
-euclide_df = pd.DataFrame(columns=['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율'])
+
 if 'pred_ratio' not in st.session_state:
   st.session_state["pred_ratio"] = 0
 if 'pred_value' not in st.session_state:
