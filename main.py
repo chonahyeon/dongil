@@ -488,6 +488,6 @@ if st.button('유사공고 확인하기'):
 
 
 
-st.caption('2022년 08월 데이터청년캠퍼스 D1 팀이 제작하였습니다.')
+st.caption('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2022년 08월 데이터청년캠퍼스 D1 팀이 제작하였습니다.')
 st.caption('만든이 : 전성현 신채현 이다희 조나현')
 st.caption('연락처(전성현) : pengping@kakao.com , 010-4724-0871')
