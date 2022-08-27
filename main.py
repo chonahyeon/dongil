@@ -378,17 +378,8 @@ with st.sidebar.header('0. Select CSV or Model'):
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
             global euclide_df
-            euclide_df['공고번호'] =9999
-            euclide_df['낙찰하한율']=float(ratio_list[ratio_value])
-            euclide_df['연면적']=float(land_area)
-            euclide_df['대지면적']= float(build_area)
-            euclide_df['기초금액']= float(cost)
-            euclide_df['예가율']= float(pred_ratio)
-            # '공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율'
-
-            # concat_df = concat_df.append(
-            #     {'공고번호': 9999, '낙찰하한율': float(ratio_list[ratio_value]), '연면적': float(land_area),
-            #      '대지면적': float(build_area), '기초금액': float(cost), '예가율': float(pred_ratio)})
+            concat_df.append({'공고번호': 9999, '낙찰하한율': float(ratio_list[ratio_value]), '연면적': float(land_area),
+                              '대지면적': float(build_area), '기초금액': float(cost), '예가율': float(pred_ratio)})
 
 
 
@@ -472,7 +463,7 @@ if st.button("타기업 분석"):
 st.subheader('3. 유사공고 분석 ')
 
 st.write('유사공고 기업 분석')
-euclide_df = pd.DataFrame()
+euclide_df = pd.DataFrame(columns=['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율'])
 if st.button("유사도분석"):
 
     concat_df = pd.read_csv('./euclidean.csv').astype(float)[['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율']]
