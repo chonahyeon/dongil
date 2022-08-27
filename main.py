@@ -378,8 +378,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
 
-
-
+            euclide_df = pd.read_csv('./euclidean.csv').astype(float)[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']]
             euclide_df = euclide_df.append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
 
             # new_data = {
