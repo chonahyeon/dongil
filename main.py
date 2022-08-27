@@ -480,7 +480,9 @@ if 'result' not in st.session_state:
 if st.button('유사공고 확인하기'):
     st.subheader('입력한 데이터 예측값')
     st.table(st.session_state['pred_df'])
-
+    result_ratio = st.write('예측_예가율 ')
+    # 초록색을 사용하기위해 success 를 사용
+    st.success('{:0,.4f}%'.format(float(st.session_state["pred_ratio"]) * 100))
     st.write('유사공고 기업 분석')
     st.table(st.session_state['result'])
 
