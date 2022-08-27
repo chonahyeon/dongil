@@ -490,17 +490,6 @@ if st.button('유사공고 확인하기'):
 
 
 footer="""<style>
-a:link , a:visited{
-color: blue;
-background-color: transparent;
-text-decoration: underline;
-}
-
-a:hover,  a:active {
-color: red;
-background-color: transparent;
-text-decoration: underline;
-}
 
 .footer {
 position: fixed;
@@ -509,13 +498,13 @@ bottom: 0;
 width: 100%;
 background-color: white;
 color: black;
-text-align: center;
+text-align: right;
 }
 </style>
 <div class="footer">
-<p>Developed with ❤데이터청년캠퍼스 D1 Team❤<a style='display: block; text-align: center;' </a></p>
-<p>Developer : 전성현 신채현 이다희 조나현 <a style='display: block; text-align: center;' </a></p>
-<p>Developer : Developer Contact(전성현) : pengping@kakao.com , 010-4724-0871 <a style='display: block; text-align: center;' </a></p>
+<p>Developed with ❤데이터청년캠퍼스 D1 Team❤<a style='display: block; text-align: right;' </a></p>
+<p>Developer : 전성현 신채현 이다희 조나현 <a style='display: block; text-align: right;' </a></p>
+<p>Developer : Developer Contact(전성현) : pengping@kakao.com , 010-4724-0871 <a style='display: block; text-align: right;' </a></p>
 
 </div>
 """
