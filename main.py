@@ -378,7 +378,18 @@ with st.sidebar.header('0. Select CSV or Model'):
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
             global euclide_df
-            euclide_df = euclide_df.append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area,'대지면적': build_area, '기초금액': cost, '예가율': pred_ratio},ignore_index = True)
+            # euclide_df = euclide_df.append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area,'대지면적': build_area, '기초금액': cost, '예가율': pred_ratio},ignore_index = True)
+            euclide_df = euclide_df.append(
+                {'공고번호': 9999}, ignore_index=True)
+            euclide_df = euclide_df.append(
+                {'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value]}, ignore_index=True)
+            euclide_df = euclide_df.append(
+                {'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area}, ignore_index=True)
+            euclide_df = euclide_df.append(
+                {'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area}, ignore_index=True)
+            euclide_df = euclide_df.append(
+                {'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,
+                 '예가율': pred_ratio}, ignore_index=True)
 
             # new_data = {
             #     '공고일': [date_1],
