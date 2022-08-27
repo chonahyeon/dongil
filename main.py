@@ -378,7 +378,7 @@ with st.sidebar.header('0. Select CSV or Model'):
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
-            st.session_state['df_result'] = st.session_state['df_result'].append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
+            st.session_state['euclide_df'] = st.session_state['euclide_df'].append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
 
 
 
