@@ -470,9 +470,9 @@ if st.button("유사도분석"):
     concat_df = pd.read_csv('./euclidean.csv').astype(float)[['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율']]
     concat_df=concat_df.append({'공고번호':9999,'낙찰하한율':float(ratio_list[ratio_value]),'연면적':float(land_area) ,'대지면적': float(build_area),'기초금액' : float(cost), '예가율' :float(pred_ratio)})
 
-    euclidean_val = pd.DataFrame(squareform(pdist(concat_df.iloc[:, 1:])), columns=concat_df['공고번호'].unique(),index=concat_df['공고번호'].unique())
-    list_e = list(euclidean_val.loc[9999].sort_values().head(10).index)
-    euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
+    # euclidean_val = pd.DataFrame(squareform(pdist(concat_df.iloc[:, 1:])), columns=concat_df['공고번호'].unique(),index=concat_df['공고번호'].unique())
+    # list_e = list(euclidean_val.loc[9999].sort_values().head(10).index)
+    # euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
     # euclidean = pd.DataFrame()
 
-    st.table(euclidean)
+    st.table(concat_df)
