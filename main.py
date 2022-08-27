@@ -378,9 +378,8 @@ with st.sidebar.header('0. Select CSV or Model'):
             #### 이게 실행되어야해
             pred_ratio, pred_value = build_model(df)
             ### 이거이거이거이거이거
-            concat_df = pd.read_csv('./euclidean.csv')[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']]
-            st.session_state['euclide_df'] = concat_df.append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
-
+            st.session_state['euclide_df'] = st.session_state['euclide_df'].append({'공고번호': 9999, '낙찰하한율': ratio_list[ratio_value], '연면적': land_area, '대지면적': build_area, '기초금액': cost,'예가율': float(pred_ratio)}, ignore_index=True)
+            concat_df = pd.read_cdv('./euclidean.csv')[['공고번호','낙찰하한율', '연면적','대지면적','기초금액','예가율']]
 
 
 
