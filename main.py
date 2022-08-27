@@ -24,7 +24,7 @@ st.set_page_config(page_title='동일건축 프로젝트 By 데이터청년캠�
 scaler = StandardScaler()
 etr = ExtraTreesRegressor()
 enc = OneHotEncoder(handle_unknown='error')
-euclidean = pd.DataFrame()
+
 # ---------------------------------#
 
 
@@ -234,7 +234,6 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     # pred_val = pd.DataFrame(columns = ['공고일','입찰일','낙찰하한율','발주청','시도','연면적','대지면적','기초금액'])
     global pred_df
 
-    global euclidean
     new_data = {
         '공고일': [date_1],
         '입찰일': [date_2],
@@ -247,7 +246,6 @@ def predict_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,bu
     }
     new_df = pd.DataFrame(new_data)
     pred_df = pd.concat([pred_df,new_df], axis = 0)
-    euclidean = new_df[['낙찰하한율', '연면적','대지면적','기초금액']]
 
 
 
@@ -468,13 +466,12 @@ st.subheader('3. 유사공고 분석 ')
 st.write('유사공고 기업 분석')
 
 if st.button("유사도분석"):
-    euclidean['예가율'] = pred_ratio
-    euclidean['공고번호'] = 99999999999
-    euclidean = euclidean[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']].dropna().astype(float)
-    concat_df = pd.read_csv('./euclidean.csv').astype(float)
-    euclidean = pd.concat([euclidean, concat_df])
-    euclidean_val = pd.DataFrame(squareform(pdist(euclidean.iloc[:, 1:])), columns=euclidean['공고번호'].unique(),index=euclidean['공고번호'].unique())
-    list_e = list(euclidean_val.loc[99999999999].sort_values().head(10).index)
+
+    concat_df = pd.read_csv('./euclidean.csv').astype(float)[['공고번호','낙찰하한율','연면적','대지면적','기초금액','예가율']]
+    concat_df=concat_df.append({'공고번호':9999,'낙찰하한율':[ratio_list[ratio_value]],'연면적':[land_area] ,'대지면적': [build_area],'기초금액' : [cost], '예가율' :pred_ratio})
+
+    euclidean_val = pd.DataFrame(squareform(pdist(concat_df.iloc[:, 1:])), columns=concat_df['공고번호'].unique(),index=concat_df['공고번호'].unique())
+    list_e = list(euclidean_val.loc[9999].sort_values().head(10).index)
     euclidean = concat_df[concat_df['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
     # euclidean = pd.DataFrame()
 
