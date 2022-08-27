@@ -386,8 +386,8 @@ with st.sidebar.header('0. Select CSV or Model'):
             result_euclidean = pd.DataFrame(squareform(pdist(new_result.iloc[:, 1:])), columns=new_result['공고번호'].unique(),index=new_result['공고번호'].unique())
             list_e = list(result_euclidean.loc[9999].sort_values().head(10).index)
             st.session_state['result'] = st.session_state['concat_df'][st.session_state['concat_df']['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']].reset_index(drop = True)
-
-                # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
+            st.session_state['result'] = st.session_state['result'].astype({"연면적": int,"대지면적": int,"기초금액": int}, errors='raise')
+            # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
                 # print('예측한 계산된 가격 : {0:,}'.format(int(pred_cost)))
                 # print('End Sequence!!!!!!!!!!!!')
 
