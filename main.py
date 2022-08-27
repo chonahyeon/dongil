@@ -382,7 +382,9 @@ with st.sidebar.header('0. Select CSV or Model'):
             new_euclidean = st.session_state['euclide_df']
             new_concat = st.session_state['concat_df']
             new_result = pd.concat([new_euclidean,new_concat])
-
+            result_euclidean = pd.DataFrame(squareform(pdist(new_result.iloc[:, 1:])), columns=df['공고번호'].unique(),index=new_result['공고번호'].unique())
+            list_e = list(result_euclidean.loc[9999].sort_values().head(10).index)
+            st.session_state['result'] = new_result[new_result['공고번호'].isin(list_e)][['공고번호', '입찰날짜', '연면적', '대지면적', '기초금액', '낙찰하한율', '예가율']]
 
 
                 # print('예측한 투찰율 : {:0,.4f}%'.format(float(pred_val) * 100))
@@ -468,7 +470,10 @@ if 'euclide_df' not in st.session_state:
 if 'concat_df' not in st.session_state:
     st.session_state['concat_df'] = pd.read_csv('./euclidean.csv')[['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율']]
 
+if 'result' not in st.session_state:
+    st.session_state['result'] = pd.DataFrame()
+
 if st.button('유사공고 확인하기'):
     st.write('유사공고 기업 분석')
-    st.table(st.session_state['euclide_df'])
+    st.table(st.session_state['result'])
 
