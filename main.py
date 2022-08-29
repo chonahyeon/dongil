@@ -90,9 +90,8 @@ def build_model(df):
 
     def first_ont_hot_encoded(df):
         global enc
-        cols = ['공고번호', '예가율', '1순위예가율', 'std_연면적', 'std_대지면적', 'std_세대수', 'std_기초금액', '낙찰하한율', '발주청', '시도', '공고년',
-                '공고월', '공고일', '공고요일', '입찰년', '입찰월', '입찰일', '입찰요일', '입찰분기', '공고분기']
-        col_arr = ['발주청', '시도', '공고년', '공고월', '공고일', '공고요일', '입찰년', '입찰월', '입찰일', '입찰요일','낙찰하한율']
+        cols = ['공고번호', '예가율', '1순위예가율', '발주청', '시도', '입찰월', '입찰일',  '입찰분기']
+        col_arr = ['발주청', '시도','공고월', '공고일',   '입찰월', '입찰일', '입찰분기']
         df = df[cols]
         enc.fit(df[col_arr])
         enc_df = pd.DataFrame(data=enc.transform(df[col_arr]).toarray(), columns=enc.get_feature_names(col_arr),
@@ -155,9 +154,8 @@ def build_model(df):
         def transform_enc(df):
 
             global enc
-            cols = ['std_연면적', 'std_대지면적', 'std_세대수', 'std_기초금액', '낙찰하한율', '발주청', '시도', '공고년', '공고월', '공고일', '공고요일',
-                    '입찰년', '입찰월', '입찰일', '입찰요일', '입찰분기', '공고분기']
-            col_arr = ['발주청', '시도', '공고년', '공고월', '공고일', '공고요일', '입찰년', '입찰월', '입찰일', '입찰요일','낙찰하한율']
+            cols = [  '발주청', '시도','입찰월', '입찰일',  '입찰분기']
+            col_arr = ['발주청', '시도',  '입찰월', '입찰일', '입찰분기']
             df = df[cols]
             enc_df = pd.DataFrame(data=enc.transform(df[col_arr]).toarray(), columns=enc.get_feature_names(col_arr),
                                   dtype=bool)
@@ -210,10 +208,10 @@ def build_model(df):
 
 
 
-    df = orn_preprocess(df)
-    df = orn_log_std_transform(df)
-    df = first_ont_hot_encoded(df)
-    orn_model_fit(df)
+    df1 = orn_preprocess(df)
+    df2 = orn_log_std_transform(df1)
+    df3 = first_ont_hot_encoded(df2[['시도','발주청','입찰분기','입찰월','입찰일']])
+    orn_model_fit(df3)
 
     pred_val, pred_cost = pred_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost,household)
 
