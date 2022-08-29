@@ -210,7 +210,7 @@ def build_model(df):
 
     df1 = orn_preprocess(df)
     df2 = orn_log_std_transform(df1)
-    df3 = first_ont_hot_encoded(df2[['시도','발주청','입찰분기','입찰월','입찰일']])
+    df3 = first_ont_hot_encoded(df2[['공고번호', '예가율', '1순위예가율', '발주청', '시도', '입찰월', '입찰일',  '입찰분기']])
     orn_model_fit(df3)
 
     pred_val, pred_cost = pred_value(date_1,date_2,ratio_value,client_value,sido_value,land_area,build_area,cost,household)
