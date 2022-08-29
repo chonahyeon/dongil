@@ -416,7 +416,8 @@ st.warning('{0:,}'.format(int(st.session_state["pred_value"])))
 #
 
 st.header('2. 타기업 분석 ')
-
+if 'time_series_company' not in st.session_state:
+    st.session_state['time_series_company'] = pd.read_csv('./기업분석_21년이후/전체기업예측.csv')
 option = st.selectbox(
     '기업리스트',
     ('(주)케이디엔지니어링건축사사무소', '(주)토펙엔지니어링건축사사무소', '(주)토문엔지니어링 건축사사무소',
@@ -425,7 +426,7 @@ option = st.selectbox(
 
 if st.button("타기업 분석"):
     st.subheader(option + ' 기업 분석 - 전체')
-    test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
+    test_plt = pd.read_csv('./기업분석_전체/' + option + '_prophet.csv')
     test_plt = test_plt.iloc[:-100, :]
     figsize = (10, 6)
     xlabel = 'ds'
@@ -445,7 +446,7 @@ if st.button("타기업 분석"):
     st.pyplot(fig)
 
     st.subheader(option + ' 기업 분석 - 2022년')
-    test_plt = pd.read_csv('./기업들/' + option + '_prophet.csv')
+    test_plt = pd.read_csv('./기업분석_21년이후/' + option + '_prophet.csv')
     test_plt = test_plt[test_plt['ds'].str.contains('2022')]
     figsize = (10, 6)
     xlabel = 'ds'
@@ -463,7 +464,10 @@ if st.button("타기업 분석"):
 
     fig.tight_layout()
     st.pyplot(fig)
+    st.session_state['time_series_company'] = pd.read_csv('./기업분석_21년이후/전체기업예측.csv').set_index('ds')
 
+    st.session_state['time_series_company'] = st.session_state['time_series_company'][st.session_state['time_series_company'].index.str.contains(st.session_state['result']['입찰일'])].T.sort_values(st.session_state['result']['입찰일']]
+    st.table(st.session_state['time_series_company'])
 st.header('3. 유사공고 분석 ')
 if 'euclide_df' not in st.session_state:
     st.session_state['euclide_df'] = pd.DataFrame(columns=['공고번호', '낙찰하한율', '연면적', '대지면적', '기초금액', '예가율'])
