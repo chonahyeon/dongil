@@ -444,9 +444,9 @@ if st.button("타기업 분석"):
     fig.tight_layout()
     st.pyplot(fig)
 
-    st.subheader(option + ' 기업 분석 - 2022년')
+    st.subheader(option + ' 기업 분석 - 2021년이후')
     test_plt = pd.read_csv('./기업분석_21년이후/' + option + '_prophet.csv')
-    test_plt = test_plt[test_plt['ds'].str.contains('2022')]
+    test_plt = test_plt.iloc[:-100, :]
     figsize = (10, 6)
     xlabel = 'ds'
     ylabel = 'y'
