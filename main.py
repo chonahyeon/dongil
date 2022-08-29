@@ -466,7 +466,7 @@ if st.button("타기업 분석"):
     st.pyplot(fig)
     st.session_state['time_series_company'] = pd.read_csv('./기업분석_21년이후/전체기업예측.csv').set_index('ds')
 
-    st.session_state['time_series_company'] = st.session_state['time_series_company'][st.session_state['time_series_company'].index.str.contains(st.session_state['result']['입찰일'])].T.sort_values(st.session_state['result']['입찰일']]
+    st.session_state['time_series_company'] = st.session_state['time_series_company'][st.session_state['time_series_company'].index.str.contains(st.session_state['result']['입찰일'])].T.sort_values(st.session_state['result']['입찰일'])
     st.table(st.session_state['time_series_company'])
 st.header('3. 유사공고 분석 ')
 if 'euclide_df' not in st.session_state:
