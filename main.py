@@ -91,7 +91,7 @@ def build_model(df):
     def first_ont_hot_encoded(df):
         global enc
         cols = ['공고번호', '예가율', '1순위예가율', '발주청', '시도', '입찰월', '입찰일',  '입찰분기']
-        col_arr = ['발주청', '시도','공고월', '공고일',   '입찰월', '입찰일', '입찰분기']
+        col_arr = ['발주청', '시도',   '입찰월', '입찰일', '입찰분기']
         df = df[cols]
         enc.fit(df[col_arr])
         enc_df = pd.DataFrame(data=enc.transform(df[col_arr]).toarray(), columns=enc.get_feature_names(col_arr),
